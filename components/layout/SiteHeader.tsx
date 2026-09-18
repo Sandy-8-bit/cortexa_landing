@@ -46,7 +46,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" size="sm">
+          <Button className="hover:!text-white"  href="/contact" size="sm">
             Start with Cortexa
           </Button>
         </nav>

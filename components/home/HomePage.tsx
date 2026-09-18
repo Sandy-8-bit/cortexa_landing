@@ -19,7 +19,7 @@ import { EnginePanels } from './EnginePanels';
 import { OpportunityMap } from './OpportunityMap';
 import { personas } from '@/data/content';
 
-function HeroSection() {
+function  HeroSection() {
   return (
     <section className="hero grid-texture">
       <PageContainer>

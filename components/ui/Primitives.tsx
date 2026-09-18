@@ -32,16 +32,18 @@ export function TechnicalLabel({ children }: { children: ReactNode }) {
 export function Button({
   children,
   href,
+  className = '',
   variant = 'primary',
   size,
 }: {
   children: ReactNode;
   href: string;
+  className?: string;
   variant?: 'primary' | 'ghost';
   size?: 'sm';
 }) {
   return (
-    <Link href={href} className={`button ${variant} ${size === 'sm' ? 'small' : ''}`}>
+    <Link href={href} className={`button ${variant} ${size === 'sm' ? 'small' : ''} ${className}`}>
       {children}
       <ArrowUpRight size={16} aria-hidden="true" />
     </Link>
