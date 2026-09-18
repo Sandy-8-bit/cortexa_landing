@@ -16,7 +16,7 @@ export function EnginesPage() {
         <EnginePanels detailed />
       </Section>
       <Section className="alternate">
-        <div className="split-layout">
+        <div className="split-layout grid grid-cols-12 gap-[48px] items-center">
           <SectionHeading
             label="CONNECTED STRATEGY"
             title="A portfolio, not a list."

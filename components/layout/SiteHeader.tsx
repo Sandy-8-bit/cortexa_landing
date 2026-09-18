@@ -40,21 +40,21 @@ export function SiteHeader() {
       </Link>
     ));
   return (
-    <header className="site-header" ref={header}>
-      <div className="container header-inner">
+    <header className="site-header sticky top-0 z-[40] [border-bottom:1px_solid_var(--line)]" ref={header}>
+      <div className="page-container header-inner w-auto max-w-[1800px] px-[var(--cx-page-padding)] mx-auto relative h-[72px] flex items-center justify-between">
         <Link
-          className="header-brand"
+          className="header-brand absolute left-[50%] top-[50%] z-[1]"
           href="/"
           aria-label="Cortexa home"
           onClick={() => setOpen(false)}
         >
           <CortexaLogo />
         </Link>
-        <nav className="desktop-nav" aria-label="Main navigation">
-          <div className="nav-cluster">{links(0, 3)}</div>
-          <div className="nav-cluster">
+        <nav className="desktop-nav flex justify-between w-full items-center" aria-label="Main navigation">
+          <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">{links(0, 3)}</div>
+          <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
             {links(3, 6)}
-            <Link className="nav-cta" href="/contact">
+            <Link className="nav-cta ml-[8px] pl-[22px] [border-left:1px_solid_var(--line)]" href="/contact">
               Start with Cortexa
               <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
@@ -62,7 +62,7 @@ export function SiteHeader() {
         </nav>
         <button
           ref={toggle}
-          className="menu-toggle"
+          className="menu-toggle hidden items-center gap-[12px] min-h-[44px] [border:0] [background:none] text-(--ink) text-[11px]"
           aria-expanded={open}
           aria-controls="mobile-navigation"
           onClick={() => setOpen(!open)}
@@ -74,7 +74,7 @@ export function SiteHeader() {
       <nav
         id="mobile-navigation"
         aria-label="Mobile navigation"
-        className={`mobile-nav ${open ? 'is-open' : ''}`}
+        className={`mobile-nav hidden ${open ? 'is-open' : ''}`}
         inert={!open}
       >
         {[...navigation, ...companyNavigation.slice(2)].map((item, i) => (

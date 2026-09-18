@@ -3,16 +3,16 @@ import { documents, fragments } from '@/data/pipeline';
 export function ResearchVisual() {
   return (
     <div
-      className="research-visual"
+      className="research-visual relative min-w-0"
       aria-label="Research documents connected to a Cortexa invention candidate"
     >
-      <div className="visual-topline technical-label">
+      <div className="visual-topline technical-label font-sans text-[9px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium flex items-center justify-between gap-[14px] [border-bottom:1px_solid_var(--line)] pb-[16px]">
         <span>
-          <span className="status-dot" /> DISCOVERY ENGINE
+          <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> DISCOVERY ENGINE
         </span>
         <span>FIG. 01</span>
       </div>
-      <div className="orbital-field">
+      <div className="orbital-field h-[320px] relative">
         <svg viewBox="0 0 560 430" fill="none" aria-hidden="true">
           <circle cx="280" cy="205" r="138" stroke="var(--line-strong)" strokeDasharray="3 7" />
           <ellipse
@@ -54,35 +54,35 @@ export function ResearchVisual() {
           <circle cx="131" cy="120" r="4" fill="var(--ink)" />
           <circle cx="409" cy="303" r="4" fill="var(--ink)" />
         </svg>
-        <div className="orbit-file file-one">
+        <div className="orbit-file file-one absolute flex items-center gap-[8px] text-[9px] [padding:11px_13px] [border:1px_solid_var(--line)] bg-(--cx-black-soft) text-(--subtle) left-0 top-[48px]">
           <FileText size={16} />
           <span>anneal_study_v4.pdf</span>
-          <span className="file-type">PDF</span>
+          <span className="file-type text-[8px] text-(--muted) [border-left:1px_solid_var(--line)] pl-[8px]">PDF</span>
         </div>
-        <div className="orbit-file file-two">
+        <div className="orbit-file file-two absolute flex items-center gap-[8px] text-[9px] [padding:11px_13px] [border:1px_solid_var(--line)] bg-(--cx-black-soft) text-(--subtle) right-0 top-[80px]">
           <GitBranch size={16} />
           <span>lab/anneal-ctl</span>
-          <span className="file-type">GIT</span>
+          <span className="file-type text-[8px] text-(--muted) [border-left:1px_solid_var(--line)] pl-[8px]">GIT</span>
         </div>
-        <div className="orbit-file file-three">
+        <div className="orbit-file file-three absolute flex items-center gap-[8px] text-[9px] [padding:11px_13px] [border:1px_solid_var(--line)] bg-(--cx-black-soft) text-(--subtle) left-0 bottom-[64px]">
           <FileText size={16} />
           <span>cell_data.ipynb</span>
         </div>
-        <div className="discovered-card">
-          <div className="technical-label">
-            <span className="status-dot" /> INVENTION IDENTIFIED <span className="score">87</span>
+        <div className="discovered-card absolute right-0 bottom-[3px] w-[216px] bg-(--cx-white) text-(--cx-black) p-[17px] [border:1px_solid_var(--cx-white)]">
+          <div className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+            <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> INVENTION IDENTIFIED <span className="score">87</span>
           </div>
           <p>
             Gradient-annealed
             <br />
             electrolyte interface
           </p>
-          <span className="mini-label">SOURCE-LINKED · HIGH POTENTIAL</span>
+          <span className="mini-label text-[8px] text-[#515151] tracking-[0.025em]">SOURCE-LINKED · HIGH POTENTIAL</span>
         </div>
       </div>
-      <div className="visual-bottomline technical-label">
+      <div className="visual-bottomline technical-label font-sans text-[8px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium flex items-center justify-between gap-[14px] pt-[18px]">
         <span>14 DOCUMENTS</span>
-        <span className="visual-line" />
+        <span className="visual-line h-[1px] bg-(--line) [flex:1]" />
         <span>12 POSSIBILITIES</span>
       </div>
     </div>
@@ -90,12 +90,12 @@ export function ResearchVisual() {
 }
 export function DocumentCloud() {
   return (
-    <div className="document-cloud">
+    <div className="document-cloud grid grid-cols-3 gap-[12px] content-center min-h-[350px]">
       {documents.map((name, index) => (
-        <div className={`document-card document-${index}`} key={name}>
+        <div className={`document-card h-[118px] p-[18px] [border:1px_solid_var(--line)] bg-(--surface) flex flex-col gap-[12px] min-w-0 document-${index}`} key={name}>
           <FileText size={21} />
           <span>{name}</span>
-          <div className="paper-lines">
+          <div className="paper-lines grid gap-[4px] mt-auto">
             <i />
             <i />
             <i />
@@ -107,8 +107,8 @@ export function DocumentCloud() {
 }
 export function TransformationVisual() {
   return (
-    <div className="transformation panel">
-      <div className="technical-label visual-topline">
+    <div className="transformation panel [padding:30px_34px] bg-(--surface)">
+      <div className="technical-label visual-topline font-sans text-[9px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium flex items-center justify-between gap-[14px] [border-bottom:1px_solid_var(--line)] pb-[16px]">
         <span>SOURCE DOCUMENTS</span>
         <span>CANDIDATES</span>
       </div>
@@ -174,10 +174,10 @@ export function TransformationVisual() {
 export function PipelineVisual({ stage }: { stage: number }) {
   if (stage === 0)
     return (
-      <div className="pipeline-visual scan-document">
+      <div className="pipeline-visual scan-document [margin:32px_0] p-[36px] min-h-[265px] bg-(--surface) [border:1px_solid_var(--line)]">
         <FileText size={36} />
-        <div className="technical-label">anneal_study_v4.pdf</div>
-        <div className="scan-line" />
+        <div className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">anneal_study_v4.pdf</div>
+        <div className="scan-line hidden" />
         <dl>
           <div>
             <dt>Domain</dt>
@@ -196,9 +196,9 @@ export function PipelineVisual({ stage }: { stage: number }) {
     );
   if (stage === 1)
     return (
-      <div className="pipeline-visual fragment-cloud">
+      <div className="pipeline-visual fragment-cloud [margin:32px_0] p-[36px] min-h-[265px] bg-(--surface) [border:1px_solid_var(--line)] flex items-center justify-center content-center gap-[14px] flex-wrap">
         {fragments.map((word, i) => (
-          <span key={word} className={i % 3 === 0 ? 'accent' : ''}>
+          <span key={word} className={i % 3 === 0 ? "accent text-(--ink)" : ''}>
             {word}
           </span>
         ))}
@@ -206,10 +206,10 @@ export function PipelineVisual({ stage }: { stage: number }) {
     );
   if (stage === 2) return <LatticeVisual evidence />;
   return (
-    <div className="pipeline-visual score-visual">
+    <div className="pipeline-visual score-visual [margin:32px_0] p-[36px] min-h-[265px] bg-(--surface) [border:1px_solid_var(--line)] text-center">
       <span data-counter>87</span>
-      <p className="technical-label">PATENTABILITY INDEX</p>
-      <p className="technical-label">CONFIDENCE 0.86</p>
+      <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">PATENTABILITY INDEX</p>
+      <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">CONFIDENCE 0.86</p>
     </div>
   );
 }
@@ -219,7 +219,7 @@ export function LatticeVisual({ evidence = false }: { evidence?: boolean }) {
     : ['CORE', 'CONTINUATION', 'PLATFORM', 'SYSTEM', 'ADJACENT'];
   return (
     <svg
-      className="lattice"
+      className="lattice w-full h-auto block max-h-[480px]"
       viewBox="0 0 500 300"
       role="img"
       aria-label={

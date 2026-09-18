@@ -1,17 +1,17 @@
 import { axes } from '@/data/candidates';
 export function Verdict({ radar = false }: { radar?: boolean }) {
   return (
-    <div className="verdict-grid">
-      <div className="verdict-score">
+    <div className="verdict-grid grid [grid-template-columns:1fr_1fr] gap-[10vw] items-center">
+      <div className="verdict-score flex items-start flex-col">
         {radar ? (
           <Radar />
         ) : (
           <>
-            <span className="giant-score" data-counter>
+            <span className="giant-score text-[clamp(160px,_21vw,_290px)] tracking-[-0.09em] leading-[1]" data-counter>
               87
             </span>
-            <span className="technical-label">
-              <span className="status-dot" /> VERDICT · HIGH PATENTABILITY
+            <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+              <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> VERDICT · HIGH PATENTABILITY
             </span>
           </>
         )}
@@ -20,16 +20,16 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
       <div className="axis-list">
         {axes.map((axis) => (
           <div key={axis.label}>
-            <div className="axis-label">
+            <div className="axis-label flex justify-between gap-[20px] mb-[14px] text-[15px]">
               <span>{axis.label}</span>
               <span>{axis.score}</span>
             </div>
-            <div className="axis-track">
+            <div className="axis-track h-[2px] bg-(--line)">
               <div data-bar style={{ width: `${axis.score}%` }} />
             </div>
           </div>
         ))}
-        <p className="technical-label">LIMITING AXIS: SCOPE · CONFIDENCE 0.86</p>
+        <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">LIMITING AXIS: SCOPE · CONFIDENCE 0.86</p>
       </div>
     </div>
   );
@@ -39,7 +39,7 @@ function Radar() {
     `${170 + Math.cos(-Math.PI / 2 + (i * 2 * Math.PI) / 5) * radius},${155 + Math.sin(-Math.PI / 2 + (i * 2 * Math.PI) / 5) * radius}`;
   return (
     <svg
-      className="radar"
+      className="radar block w-full max-w-[420px] m-auto"
       viewBox="0 0 340 320"
       role="img"
       aria-label="Five-axis verdict 87: Novelty 92, Non-obviousness 84, Enablement 88, Scope 79, Commercial pull 90"

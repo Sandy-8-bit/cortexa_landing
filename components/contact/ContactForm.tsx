@@ -24,9 +24,9 @@ export function ContactForm() {
   }
   return (
     <>
-      <form className="contact-form panel" noValidate onSubmit={submit}>
-        <div className="technical-label">LET’S START WITH YOUR RESEARCH</div>
-        <div className="form-row">
+      <form className="contact-form panel p-[40px] bg-(--surface)" noValidate onSubmit={submit}>
+        <div className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">LET’S START WITH YOUR RESEARCH</div>
+        <div className="form-row grid [grid-template-columns:1fr_1fr] gap-[20px] mb-[30px]">
           <div>
             <label htmlFor="name">
               Name <span>*</span>
@@ -42,7 +42,7 @@ export function ContactForm() {
               placeholder="Your name"
             />
             {errors.name && (
-              <p id="name-error" className="form-error">
+              <p id="name-error" className="form-error text-[12px] text-[#a12e22] mt-[10px]">
                 {errors.name}
               </p>
             )}
@@ -63,7 +63,7 @@ export function ContactForm() {
               placeholder="you@organisation.com"
             />
             {errors.email && (
-              <p id="email-error" className="form-error">
+              <p id="email-error" className="form-error text-[12px] text-[#a12e22] mt-[10px]">
                 {errors.email}
               </p>
             )}
@@ -83,11 +83,11 @@ export function ContactForm() {
           maxLength={4000}
           placeholder="Roughly 60 papers and two repos from the last three years."
         />
-        <button className="button primary" type="submit">
+        <button className="button primary min-h-[60px] inline-flex items-center justify-between gap-[35px] [padding:18px_26px] [border:1px_solid_var(--ink)] rounded-none text-[14px] font-medium leading-[1.4]" type="submit">
           Request a run
           <ArrowUpRight size={16} />
         </button>
-        <p className="demo-note">This is a demo page — nothing is sent anywhere.</p>
+        <p className="demo-note text-[13px] leading-[1.6] text-(--muted)">This is a demo page — nothing is sent anywhere.</p>
       </form>
       <Toast message={toast} onClose={() => setToast('')} />
     </>

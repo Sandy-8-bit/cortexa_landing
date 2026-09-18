@@ -7,14 +7,14 @@ export function AgencyDocket() {
     (item) => filter === 'all' || (filter === 'review' ? item.review : !item.review),
   );
   return (
-    <div className="agency-docket panel">
-      <div className="docket-header technical-label">
+    <div className="agency-docket panel overflow-hidden bg-(--canvas)">
+      <div className="docket-header technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium flex justify-between gap-[24px] [padding:24px_32px] bg-(--surface) [border-bottom:1px_solid_var(--line)]">
         <span>
-          <span className="status-dot" /> MERIDIAN IP PARTNERS · DOCKET
+          <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> MERIDIAN IP PARTNERS · DOCKET
         </span>
         <span>BILLING PERIOD · SEP 2026</span>
       </div>
-      <div className="metrics">
+      <div className="metrics grid grid-cols-4 [border-block:1px_solid_var(--line)] mb-[38px] [padding:30px_0]">
         {[
           ['9', 'Active clients'],
           ['23', 'Open matters'],
@@ -27,7 +27,7 @@ export function AgencyDocket() {
           </div>
         ))}
       </div>
-      <div className="filter-bar" aria-label="Filter matters">
+      <div className="filter-bar flex items-center flex-wrap gap-[8px] [margin:28px_0]" aria-label="Filter matters">
         {[
           ['all', 'All matters'],
           ['review', 'Awaiting your review'],
@@ -42,7 +42,7 @@ export function AgencyDocket() {
         {matters.length} sample matters shown
       </p>
       <div
-        className="table-scroll"
+        className="table-scroll w-full overflow-x-auto"
         role="region"
         aria-label="Agency matters, scroll horizontally for all columns"
         tabIndex={0}
@@ -70,10 +70,10 @@ export function AgencyDocket() {
                 <td>{item.corpus}</td>
                 <td>{item.candidates}</td>
                 <td>
-                  <span className="table-score">{item.score}</span>
+                  <span className="table-score text-[18px] text-(--ink)">{item.score}</span>
                 </td>
                 <td>
-                  <span className={`status-badge ${item.review ? 'review' : ''}`}>
+                  <span className={`status-badge inline-flex items-center gap-[7px] text-[11px] ${item.review ? 'review' : ''}`}>
                     <i />
                     {item.review ? 'Awaiting agent review' : 'With client'}
                   </span>
@@ -84,7 +84,7 @@ export function AgencyDocket() {
           </tbody>
         </table>
       </div>
-      <p className="demo-note docket-note">
+      <p className="demo-note docket-note text-[13px] leading-[1.6] text-(--muted) [padding:22px_32px]">
         Sample docket. Matter numbers follow your own scheme; Cortexa never renumbers them.
       </p>
     </div>

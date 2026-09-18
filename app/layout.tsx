@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <a className="skip-link" href="#main-content">
+        <a className="skip-link fixed top-[-100px] left-[20px] bg-(--cx-white) text-(--cx-black) z-[100] p-[16px]" href="#main-content">
           Skip to content
         </a>
         <SiteHeader />

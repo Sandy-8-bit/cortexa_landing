@@ -6,18 +6,18 @@ import { candidates, candidateFilters, categoryLabels, type Candidate } from '@/
 
 export function CandidateCard({ candidate, index }: { candidate: Candidate; index: number }) {
   return (
-    <article className={`candidate-card ${candidate.category}`}>
-      <div className="candidate-top">
-        <span className="technical-label">CANDIDATE {String(index + 1).padStart(2, '0')}</span>
-        <span className="candidate-score">
+    <article className={`candidate-card flex flex-col min-w-0 bg-(--canvas) p-[30px] relative ${candidate.category}`}>
+      <div className="candidate-top flex items-center justify-between gap-[16px] mb-[45px]">
+        <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">CANDIDATE {String(index + 1).padStart(2, '0')}</span>
+        <span className="candidate-score text-[36px] leading-[1] tracking-[-0.05em]">
           {candidate.score}
           <span>/100</span>
         </span>
       </div>
       <h3>{candidate.title}</h3>
       <p>{candidate.description}</p>
-      <div className="candidate-bottom">
-        <span className="category">
+      <div className="candidate-bottom flex items-center justify-between gap-[12px] mt-[30px]">
+        <span className="category text-[10px] tracking-[0.045em] uppercase text-(--subtle)">
           <i />
           {categoryLabels[candidate.category]}
         </span>
@@ -25,7 +25,7 @@ export function CandidateCard({ candidate, index }: { candidate: Candidate; inde
           <ArrowUpRight size={18} />
         </Link>
       </div>
-      <div className="candidate-track">
+      <div className="candidate-track h-[1px] bg-(--line) mt-[12px]">
         <span style={{ width: `${candidate.score}%` }} />
       </div>
     </article>
@@ -38,7 +38,7 @@ export function OpportunityMap() {
   );
   return (
     <div>
-      <div className="metrics">
+      <div className="metrics grid grid-cols-4 [border-block:1px_solid_var(--line)] mb-[38px] [padding:30px_0]">
         {[
           ['12', 'Candidates found'],
           ['4', 'High potential'],
@@ -51,7 +51,7 @@ export function OpportunityMap() {
           </div>
         ))}
       </div>
-      <div className="filter-bar" aria-label="Filter candidates">
+      <div className="filter-bar flex items-center flex-wrap gap-[8px] [margin:28px_0]" aria-label="Filter candidates">
         {candidateFilters.map((item) => (
           <button key={item} onClick={() => setFilter(item)} aria-pressed={item === filter}>
             {item === 'all' ? 'All' : categoryLabels[item]}
@@ -64,7 +64,7 @@ export function OpportunityMap() {
       <p className="sr-only" role="status">
         {visible.length} candidates shown
       </p>
-      <div className="candidate-grid" key={filter}>
+      <div className="candidate-grid grid grid-cols-3 gap-[1px] bg-(--line) [border:1px_solid_var(--line)]" key={filter}>
         {visible.map((candidate) => (
           <CandidateCard
             key={candidate.title}
@@ -73,7 +73,7 @@ export function OpportunityMap() {
           />
         ))}
       </div>
-      <p className="section-note">
+      <p className="section-note text-[13px] leading-[1.6] text-(--muted) mt-[28px]">
         Every candidate is ranked by potential. Every score is traceable back to the paragraph it
         came from.
       </p>

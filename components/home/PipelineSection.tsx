@@ -31,8 +31,8 @@ export function PipelineSection() {
         title="Cortexa looks deeper."
         description="Four passes over the same material, each one asking a harder question."
       />
-      <div className="pipeline-layout" ref={scope}>
-        <nav className="pipeline-nav" aria-label="Research passes">
+      <div className="pipeline-layout grid grid-cols-12 gap-[28px] [align-items:start]" ref={scope}>
+        <nav className="pipeline-nav [grid-column:1/4] sticky top-[112px] pr-[50px]" aria-label="Research passes">
           {pipeline.map((stage, i) => (
             <a
               href={`#pass-${i}`}
@@ -47,14 +47,14 @@ export function PipelineSection() {
         </nav>
         <div>
           {pipeline.map((stage, i) => (
-            <article className="pipeline-stage" id={`pass-${i}`} key={stage.name}>
+            <article className="pipeline-stage [padding:0_0_58px] mb-[58px] [border-bottom:1px_solid_var(--line)] [scroll-margin-top:105px]" id={`pass-${i}`} key={stage.name}>
               <TechnicalLabel>
                 PASS 0{i + 1} · {stage.name}
               </TechnicalLabel>
               <h3>{stage.title}</h3>
               <p>{stage.description}</p>
               <PipelineVisual stage={i} />
-              <div className="pipeline-output technical-label">OUTPUT · {stage.output}</div>
+              <div className="pipeline-output technical-label font-sans text-[11px] leading-[1.5] tracking-[0.02em] uppercase text-(--muted) font-medium max-w-[690px]">OUTPUT · {stage.output}</div>
             </article>
           ))}
         </div>

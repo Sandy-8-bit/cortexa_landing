@@ -5,9 +5,9 @@ export function FaqPage() {
     <>
       <PageIntro label="Questions" title="Questions worth asking first." />
       <Section className="first-section">
-        <div className="faq-layout">
+        <div className="faq-layout grid [grid-template-columns:1fr_2.8fr] gap-[6vw]">
           <aside>
-            <p className="technical-label">A LITTLE MORE CLARITY</p>
+            <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">A LITTLE MORE CLARITY</p>
             <p>Evidence first. Including how we work.</p>
             <Button href="/contact" variant="ghost">
               Talk to us

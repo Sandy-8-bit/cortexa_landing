@@ -16,7 +16,7 @@ export function TrustPage() {
         description="Most of what you'll upload isn't public yet. Here is exactly what happens to it."
       />
       <Section className="first-section">
-        <div className="trust-banner">
+        <div className="trust-banner flex items-center gap-[22px] [padding:26px_30px] [border:1px_solid_var(--line)] mb-[40px] bg-(--surface)">
           <ShieldCheck size={28} />
           <p>
             Concept site · The product policies below describe the intended service. This website

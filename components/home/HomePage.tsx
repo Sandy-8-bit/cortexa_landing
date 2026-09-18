@@ -11,7 +11,7 @@ export function HomePage() {
     <>
       <HeroSection />
       <Section id="research" className="research-section">
-        <div className="split-layout">
+        <div className="split-layout grid grid-cols-12 gap-[48px] items-center">
           <SectionHeading
             label="01 / THE UNTAPPED POTENTIAL"
             title="Research is everywhere."
@@ -54,7 +54,7 @@ export function HomePage() {
           label="05 / FROM RESEARCH TO DIRECTION"
           title="Meet your opportunity map."
         />
-        <div className="sample-caption technical-label">SAMPLE CORPUS · MATERIALS SCIENCE LAB</div>
+        <div className="sample-caption technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium mb-[22px]">SAMPLE CORPUS · MATERIALS SCIENCE LAB</div>
         <OpportunityMap />
       </Section>
       <Section>

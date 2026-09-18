@@ -33,10 +33,10 @@ export function AgenciesPage() {
       </Section>
       <Section className="alternate">
         <SectionHeading title="How a matter moves through the firm" />
-        <ol className="lifecycle">
+        <ol className="lifecycle grid grid-cols-5 gap-[28px]">
           {matterLifecycle.map((stage, i) => (
             <li key={stage.title} data-reveal>
-              <span className="technical-label">0{i + 1}</span>
+              <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">0{i + 1}</span>
               <h3>{stage.title}</h3>
               <p>{stage.description}</p>
             </li>
