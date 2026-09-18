@@ -12,16 +12,17 @@ test('every route renders correctly at every required breakpoint', async ({ page
     await expect(page.locator('h1'), route).toHaveCount(1);
     await expect(page.locator('h1'), route).toBeVisible();
     await expect(page).toHaveTitle(/Cortexa/);
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://cortexa.co${route === '/' ? '/' : route}`);
+    const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+    expect(new URL(canonical!).href).toBe(new URL(route, 'https://cortexa.co').href);
     for (const width of [320, 375, 390, 430, 640, 768, 900, 1024, 1280, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       const sizes = await page.evaluate(() => ({ viewport: window.innerWidth, scroll: document.documentElement.scrollWidth }));
       expect(sizes.scroll, `${route} overflows at ${width}px`).toBeLessThanOrEqual(sizes.viewport);
     }
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.screenshot({ path: `test-results/screenshots/${route === '/' ? 'home' : route.slice(1)}-desktop.png`, fullPage: true });
+    await page.screenshot({ path: `.playwright-artifacts/screenshots/${route === '/' ? 'home' : route.slice(1)}-desktop.png`, fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.screenshot({ path: `test-results/screenshots/${route === '/' ? 'home' : route.slice(1)}-mobile.png`, fullPage: true });
+    await page.screenshot({ path: `.playwright-artifacts/screenshots/${route === '/' ? 'home' : route.slice(1)}-mobile.png`, fullPage: true });
   }
   expect(errors).toEqual([]);
 });

@@ -1,10 +1,21 @@
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { CortexaLogo } from '@/components/branding/CortexaLogo';
 import { navigation, companyNavigation } from '@/data/navigation';
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="container">
+        {/* <div className="footer-statement">
+          <p>
+            Evidence first,
+            <br />
+            always.
+          </p>
+          <Link href="/contact" className="footer-contact" aria-label="Contact Cortexa">
+            <ArrowUpRight strokeWidth={1} aria-hidden="true" />
+          </Link>
+        </div> */}
         <div className="footer-grid">
           <div className="footer-brand">
             <Link href="/" aria-label="Cortexa home">
@@ -15,9 +26,7 @@ export function SiteFooter() {
               <br />
               Evidence first, always.
             </p>
-            <span className="technical-label">
-              <span className="status-dot" /> RESEARCH → POSSIBILITY
-            </span>
+            <span className="technical-label">RESEARCH → POSSIBILITY</span>
           </div>
           <div>
             <h2 className="technical-label">Product</h2>

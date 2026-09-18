@@ -6,24 +6,44 @@ export default function Image() {
   return new ImageResponse(
     <div
       style={{
-        background: '#07090b',
-        color: '#eef2f4',
+        background: '#050505',
+        color: '#f5f5f3',
         width: '100%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '80px',
+        padding: '64px 72px',
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ color: '#4fe3c1', fontSize: 30, marginBottom: 50 }}>cortexa.</div>
-      <div style={{ fontSize: 78, lineHeight: 1.1, letterSpacing: -4 }}>Your research has more</div>
-      <div style={{ fontSize: 78, lineHeight: 1.1, letterSpacing: -4, color: '#4fe3c1' }}>
-        to say.
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontSize: 20,
+          borderBottom: '1px solid #444',
+          paddingBottom: 24,
+        }}
+      >
+        <span>Cortexa</span>
+        <span style={{ fontSize: 13, color: '#aaa' }}>INVENTION DISCOVERY, EVIDENCE FIRST</span>
       </div>
-      <div style={{ fontSize: 25, color: '#9aa6ad', marginTop: 32 }}>
-        Find the inventions hiding inside it.
+      <div style={{ height: 1, background: '#145cff', marginTop: 48, opacity: 0.7 }} />
+      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -5, marginTop: 52 }}>
+        Your research
+      </div>
+      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -5 }}>has more to say.</div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontSize: 22,
+          color: '#b2b2af',
+          marginTop: 38,
+        }}
+      >
+        <span>Find the inventions hiding inside it.</span>
+        <span style={{ fontSize: 16 }}>cortexa.co ↗</span>
       </div>
     </div>,
     size,

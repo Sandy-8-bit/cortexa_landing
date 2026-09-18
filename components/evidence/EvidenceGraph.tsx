@@ -14,7 +14,7 @@ export function EvidenceGraph() {
         </div>
         <div className="graph-network">
           <svg viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
-            <g fill="none" stroke="#37584e" strokeWidth="1.2">
+            <g fill="none" stroke="var(--line-strong)" strokeWidth="1.2">
               <path
                 className="draw-path"
                 d="M300 85C300 150 140 150 140 200M300 85C300 150 460 150 460 200M300 85C300 280 140 280 140 335M300 85C300 280 460 280 460 335"

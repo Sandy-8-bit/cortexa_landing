@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cortexa
 
-## Getting Started
+The Cortexa marketing and product demonstration site, built with Next.js App Router, React, TypeScript, Tailwind CSS, and GSAP. The current visual system follows `DESIGN.md`: black and off-white editorial layouts, Inter typography, sharp geometry, and restrained blue atmosphere.
 
-First, run the development server:
+## Run locally
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. All ten routes are implemented: `/`, `/product`, `/how-it-works`, `/engines`, `/evidence`, `/agencies`, `/pricing`, `/trust`, `/faq`, and `/contact`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verify and build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm run lint
+npm run build
+npx playwright test
+```
 
-## Learn More
+The browser suite uses installed Google Chrome and starts its own production server on port 3100. It checks all ten routes at screen widths from 320px to 1440px, the product demo, filters, graph selections, forms, FAQ, mobile navigation, links, and metadata. Screenshots and failure traces go to `.playwright-artifacts/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The canonical production origin defaults to `https://cortexa.co`. Set `NEXT_PUBLIC_SITE_URL` before building if a different origin is needed. Deploy to a host supporting Next.js 16 and connect the domain there. This repository does not manage hosting or DNS.
 
-## Deploy on Vercel
+The upload, analysis, exports, and contact submission remain explicitly labelled demonstrations as specified in the original product brief. No research files or contact details are transmitted. The site has no backend credentials or integrations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design and content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/globals.css`: centralized theme tokens, contrast for light/dark surfaces, component styling, and responsive layouts.
+- `components/`: shared layout and page components; state remains in interactive components.
+- `components/animations/PageAnimations.tsx`: scoped GSAP entrances and scroll reveals with reduced-motion support.
+- `data/`: existing copy, sample records, pricing, and navigation.
+- `lib/metadata.ts`: route metadata and production origin.
+
+Keep text and interactions intact when changing the visual theme. SVG diagrams inherit theme tokens; blue is reserved for subtle atmospheric effects and active indicators.

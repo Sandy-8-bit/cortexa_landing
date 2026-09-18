@@ -49,7 +49,7 @@ function Radar() {
           key={r}
           points={axes.map((_, i) => point(i, r)).join(' ')}
           fill="none"
-          stroke="#2b3a37"
+          stroke="var(--line-strong)"
         />
       ))}
       {axes.map((_, i) => (
@@ -59,33 +59,33 @@ function Radar() {
           y1="155"
           x2={point(i, 105).split(',')[0]}
           y2={point(i, 105).split(',')[1]}
-          stroke="#2b3a37"
+          stroke="var(--line-strong)"
         />
       ))}
       <polygon
         className="radar-shape"
         points={axes.map((axis, i) => point(i, axis.score * 1.05)).join(' ')}
-        fill="#4fe3c1"
+        fill="var(--ink)"
         fillOpacity=".14"
-        stroke="#4fe3c1"
+        stroke="var(--ink)"
         strokeWidth="2"
       />
-      <text x="170" y="165" textAnchor="middle" fill="#eef2f4" fontSize="40">
+      <text x="170" y="165" textAnchor="middle" fill="var(--ink)" fontSize="40">
         87
       </text>
-      <text x="170" y="26" textAnchor="middle" fill="#9aa6ad" fontSize="11">
+      <text x="170" y="26" textAnchor="middle" fill="var(--subtle)" fontSize="11">
         Novelty
       </text>
-      <text x="279" y="112" textAnchor="middle" fill="#9aa6ad" fontSize="10">
+      <text x="279" y="112" textAnchor="middle" fill="var(--subtle)" fontSize="10">
         Non-obviousness
       </text>
-      <text x="246" y="280" textAnchor="middle" fill="#9aa6ad" fontSize="11">
+      <text x="246" y="280" textAnchor="middle" fill="var(--subtle)" fontSize="11">
         Enablement
       </text>
-      <text x="95" y="280" textAnchor="middle" fill="#9aa6ad" fontSize="11">
+      <text x="95" y="280" textAnchor="middle" fill="var(--subtle)" fontSize="11">
         Scope
       </text>
-      <text x="55" y="112" textAnchor="middle" fill="#9aa6ad" fontSize="11">
+      <text x="55" y="112" textAnchor="middle" fill="var(--subtle)" fontSize="11">
         Commercial
       </text>
     </svg>

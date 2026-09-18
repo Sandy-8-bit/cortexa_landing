@@ -2,10 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { navigation, companyNavigation } from '@/data/navigation';
 import { CortexaLogo } from '@/components/branding/CortexaLogo';
-import { Button } from '@/components/ui/Primitives';
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -30,25 +29,36 @@ export function SiteHeader() {
       document.removeEventListener('pointerdown', outside);
     };
   }, [open]);
+  const links = (start: number, end: number) =>
+    navigation.slice(start, end).map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        aria-current={pathname === item.href ? 'page' : undefined}
+      >
+        {item.label}
+      </Link>
+    ));
   return (
     <header className="site-header" ref={header}>
       <div className="container header-inner">
-        <Link href="/" aria-label="Cortexa home" onClick={() => setOpen(false)}>
+        <Link
+          className="header-brand"
+          href="/"
+          aria-label="Cortexa home"
+          onClick={() => setOpen(false)}
+        >
           <CortexaLogo />
         </Link>
-        <nav aria-label="Main navigation" className="desktop-nav">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={pathname === item.href ? 'page' : undefined}
-            >
-              {item.label}
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <div className="nav-cluster">{links(0, 3)}</div>
+          <div className="nav-cluster">
+            {links(3, 6)}
+            <Link className="nav-cta" href="/contact">
+              Start with Cortexa
+              <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
-          ))}
-          <Button className="hover:!text-white"  href="/contact" size="sm">
-            Start with Cortexa
-          </Button>
+          </div>
         </nav>
         <button
           ref={toggle}
@@ -67,15 +77,16 @@ export function SiteHeader() {
         className={`mobile-nav ${open ? 'is-open' : ''}`}
         inert={!open}
       >
-        {[...navigation, ...companyNavigation.slice(2)].map((item) => (
+        {[...navigation, ...companyNavigation.slice(2)].map((item, i) => (
           <Link
             key={item.href}
             href={item.href}
             aria-current={pathname === item.href ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
+            <span className="menu-number">{String(i + 1).padStart(2, '0')}</span>
             {item.label}
-            <span aria-hidden="true">↗</span>
+            <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
         ))}
       </nav>

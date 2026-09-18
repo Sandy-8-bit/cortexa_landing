@@ -1,67 +1,11 @@
-import { ArrowDown } from 'lucide-react';
-import {
-  Button,
-  Section,
-  SectionHeading,
-  PageContainer,
-  TechnicalLabel,
-  FeatureGrid,
-  FinalCta,
-} from '@/components/ui/Primitives';
-import {
-  ResearchVisual,
-  DocumentCloud,
-  TransformationVisual,
-} from '@/components/visuals/ResearchVisual';
+import { Button, Section, SectionHeading, FeatureGrid, FinalCta } from '@/components/ui/Primitives';
+import { DocumentCloud, TransformationVisual } from '@/components/visuals/ResearchVisual';
 import { Verdict } from '@/components/visuals/Verdict';
+import { HeroSection } from './HeroSection';
 import { PipelineSection } from './PipelineSection';
 import { EnginePanels } from './EnginePanels';
 import { OpportunityMap } from './OpportunityMap';
 import { personas } from '@/data/content';
-
-function  HeroSection() {
-  return (
-    <section className="hero grid-texture">
-      <PageContainer>
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <TechnicalLabel>
-              <span className="status-dot" /> INVENTION DISCOVERY, EVIDENCE FIRST
-            </TechnicalLabel>
-            <h1>
-              <span className="hero-line">
-                <span>Your research</span>
-              </span>
-              <span className="hero-line">
-                <span>has more</span>
-              </span>
-              <span className="hero-line">
-                <span className="accent">to say.</span>
-              </span>
-            </h1>
-            <p className="hero-support">Find the inventions hiding inside it.</p>
-            <div className="actions hero-support">
-              <Button href="/product">Explore Cortexa</Button>
-              <Button href="/how-it-works" variant="ghost">
-                See how it works
-              </Button>
-            </div>
-          </div>
-          <div className="hero-support">
-            <ResearchVisual />
-          </div>
-        </div>
-        <div className="hero-meta hero-support">
-          <a href="#research">
-            <ArrowDown size={14} /> SCROLL TO DISCOVER
-          </a>
-          <span>PDF · DOCX · LATEX · GIT REPOS</span>
-          <span>USPTO · WIPO · EPO · ARXIV</span>
-        </div>
-      </PageContainer>
-    </section>
-  );
-}
 export function HomePage() {
   return (
     <>

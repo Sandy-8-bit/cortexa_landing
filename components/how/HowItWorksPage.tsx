@@ -13,7 +13,7 @@ export function HowItWorksPage() {
       <Section className="first-section">
         <div className="how-stages">
           {howItWorks.map((stage, i) => (
-            <article className="how-stage" key={stage.title} data-reveal>
+            <article className="how-stage" id={`stage-${i + 1}`} key={stage.title} data-reveal>
               <div>
                 <TechnicalLabel>STAGE {String(i + 1).padStart(2, '0')} / 07</TechnicalLabel>
                 <h2>{stage.title}</h2>

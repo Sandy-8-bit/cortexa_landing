@@ -1,15 +1,10 @@
-﻿import { Poppins } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageAnimations } from '@/components/animations/PageAnimations';
 import { pageMetadata } from '@/lib/metadata';
 import './globals.css';
-const poppins = Poppins({
-  variable: '--font-poppins',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
-});
+const inter = Inter({ variable: '--font-inter', subsets: ['latin'], display: 'swap' });
 export const metadata = pageMetadata(
   'Home',
   'Find the inventions hiding inside your research. Evidence-first invention discovery for research teams, patent teams, and agencies.',
@@ -17,7 +12,7 @@ export const metadata = pageMetadata(
 );
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={inter.variable}>
       <body>
         <a className="skip-link" href="#main-content">
           Skip to content
