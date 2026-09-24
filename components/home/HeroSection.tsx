@@ -19,7 +19,7 @@ export function HeroSection() {
             </TechnicalLabel>
             <h1>
               <span className="hero-line block overflow-hidden pb-[0.06em] mb-[-0.04em]">
-                <span>Your research</span>
+                <span>Your research </span>
               </span>
               <span className="hero-line block overflow-hidden pb-[0.06em] mb-[-0.04em]">
                 <span>has more to say.</span>
@@ -27,14 +27,12 @@ export function HeroSection() {
             </h1>
             <div className="hero-description hero-support">
               <p>Find the inventions hiding inside it.</p>
+              <p className="hero-detail">Upload papers, code and lab notes. Get ranked invention candidates, each backed by prior art from USPTO, EPO and arXiv.</p>
               <div className="actions flex items-center flex-wrap gap-[16px] mt-[36px]">
-                <Button href="/product">Explore Cortexa</Button>
-                <Link className="hero-secondary flex items-center gap-[20px] text-[13px]" href="/how-it-works">
-                  <span>See how it works</span>
-                  <span className="square-action grid place-items-center [border:1px_solid_#f5f5f34a] w-[62px] h-[62px]">
-                    <ArrowUpRight size={22} aria-hidden="true" />
-                  </span>
-                </Link>
+                <Button href="/contact">Book a demo</Button>
+                <Button href="/how-it-works" variant="ghost">
+                  See how it works
+                </Button>
               </div>
             </div>
           </div>
@@ -51,7 +49,7 @@ export function HeroSection() {
         </div>
         <nav className="capability-strip grid grid-cols-4 [border-top:1px_solid_var(--line)]" aria-label="Explore the four research passes">
           {pipeline.map((stage, index) => (
-            <Link href={`/how-it-works#stage-${index === 0 ? 1 : index + 2}`} key={stage.name}>
+            <Link href={`/how-it-works#stage-${index + 1}`} key={stage.name}>
               <span className="capability-number">0{index + 1}</span>
               <span>{stage.name}</span>
               <ArrowUpRight size={18} aria-hidden="true" />

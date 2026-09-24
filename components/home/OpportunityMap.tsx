@@ -16,13 +16,14 @@ export function CandidateCard({ candidate, index }: { candidate: Candidate; inde
       </div>
       <h3>{candidate.title}</h3>
       <p>{candidate.description}</p>
+      <p className="text-xs">{index === 0 ? 'Confidence: High (86%)' : 'Confidence: not assessed in this sample'}</p>
       <div className="candidate-bottom flex items-center justify-between gap-[12px] mt-[30px]">
         <span className="category text-[10px] tracking-[0.045em] uppercase text-(--subtle)">
           <i />
           {categoryLabels[candidate.category]}
         </span>
-        <Link href="/evidence" aria-label={`Explore sample evidence for ${candidate.title}`}>
-          <ArrowUpRight size={18} />
+        <Link href={index === 0 ? '/evidence#candidate-01' : '/evidence'} aria-label={`View sample evidence for ${candidate.title}`}>
+          View evidence <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
       </div>
       <div className="candidate-track h-[1px] bg-(--line) mt-[12px]">
@@ -33,9 +34,11 @@ export function CandidateCard({ candidate, index }: { candidate: Candidate; inde
 }
 export function OpportunityMap() {
   const [filter, setFilter] = useState<(typeof candidateFilters)[number]>('all');
-  const visible = candidates.filter(
+  const [expanded, setExpanded] = useState(false);
+  const filtered = candidates.filter(
     (candidate) => filter === 'all' || candidate.category === filter,
   );
+  const visible = filter === 'all' && !expanded ? filtered.slice(0, 6) : filtered;
   return (
     <div>
       <div className="metrics grid grid-cols-4 [border-block:1px_solid_var(--line)] mb-[38px] [padding:30px_0]">
@@ -53,7 +56,7 @@ export function OpportunityMap() {
       </div>
       <div className="filter-bar flex items-center flex-wrap gap-[8px] [margin:28px_0]" aria-label="Filter candidates">
         {candidateFilters.map((item) => (
-          <button key={item} onClick={() => setFilter(item)} aria-pressed={item === filter}>
+          <button key={item} onClick={() => { setFilter(item); setExpanded(false); }} aria-pressed={item === filter}>
             {item === 'all' ? 'All' : categoryLabels[item]}
             <span>
               {item === 'all' ? 12 : candidates.filter((c) => c.category === item).length}
@@ -64,7 +67,7 @@ export function OpportunityMap() {
       <p className="sr-only" role="status">
         {visible.length} candidates shown
       </p>
-      <div className="candidate-grid grid grid-cols-3 gap-[1px] bg-(--line) [border:1px_solid_var(--line)]" key={filter}>
+      <div id="opportunity-candidates" className="candidate-grid grid grid-cols-3 gap-[1px] bg-(--line) [border:1px_solid_var(--line)]" key={filter}>
         {visible.map((candidate) => (
           <CandidateCard
             key={candidate.title}
@@ -73,6 +76,11 @@ export function OpportunityMap() {
           />
         ))}
       </div>
+      {filter === 'all' && (
+        <button className="button ghost mt-6 inline-flex min-h-12 items-center border border-(--ink) px-6 py-3 text-sm" aria-expanded={expanded} aria-controls="opportunity-candidates" onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'Show fewer candidates' : 'Show all 12 candidates'}
+        </button>
+      )}
       <p className="section-note text-[13px] leading-[1.6] text-(--muted) mt-[28px]">
         Every candidate is ranked by potential. Every score is traceable back to the paragraph it
         came from.

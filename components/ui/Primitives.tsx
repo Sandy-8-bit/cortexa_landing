@@ -107,7 +107,7 @@ export function SectionHeading({
 }
 export function FeatureGrid({ items }: { items: { title: string; description: string }[] }) {
   return (
-    <div className="feature-grid grid [grid-template-columns:1.2fr_1fr_1fr] gap-[14px]">
+    <div className={`feature-grid grid [grid-template-columns:1.2fr_1fr_1fr] gap-[14px] ${items.length === 4 ? 'feature-grid-four' : ''}`}>
       {items.map((item, index) => (
         <article className="feature-card flex flex-col min-h-[380px] min-w-0 p-[32px] bg-(--surface) [border:1px_solid_var(--line)]" key={item.title} data-reveal>
           <span className="feature-number text-[11px] mb-[58px]">{String(index + 1).padStart(2, '0')} /</span>
@@ -120,7 +120,7 @@ export function FeatureGrid({ items }: { items: { title: string; description: st
 }
 export function FinalCta({
   title = 'Your next patent may already be in your research.',
-  label = 'Start with Cortexa',
+  label = 'Book a demo',
 }: {
   title?: string;
   label?: string;
@@ -135,6 +135,7 @@ export function FinalCta({
           See how it works
         </Button>
       </div>
+      <p className="mt-5 text-sm text-(--muted)">30-minute walkthrough on a sample corpus. No upload needed.</p>
     </Section>
   );
 }

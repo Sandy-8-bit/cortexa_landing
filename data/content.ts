@@ -14,6 +14,10 @@ export const personas = [
     description:
       'Automate first-pass screening across a whole department. Spend attorney hours on strategy instead of triage.',
   },
+  {
+    title: 'IP agencies',
+    description: 'Screen client research at scale and bring evidence-backed filing recommendations to every client meeting.',
+  },
 ];
 export const engines = [
   {
@@ -40,7 +44,7 @@ export const engines = [
     steps: [
       'Research + roadmap',
       'Opportunity seeds — unclaimed directions',
-      'Invention lattice — related filings',
+      'Invention lattice (a map of related filings around your idea)',
       'Strategy — a portfolio, not a list',
     ],
     detail:

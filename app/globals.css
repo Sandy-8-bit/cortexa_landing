@@ -280,6 +280,12 @@ main > * {
   @apply [border-color:var(--cx-white)];
   @apply text-[15px] min-h-[62px] min-w-[203px];
 }
+.hero .button.ghost {
+  @apply bg-transparent text-(--cx-white) [border-color:var(--cx-white)];
+}
+.hero .button.ghost:hover {
+  @apply bg-(--cx-white) text-(--cx-black);
+}
 .square-action {
   transition:
     background 0.25s,
@@ -2136,3 +2142,22 @@ tbody tr:hover {
   }
 }
 p.sr-only { @apply m-0; }
+
+.hero-description > .hero-detail {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 600px;
+  margin-top: 18px;
+  color: var(--subtle);
+}
+.candidate-bottom { flex-wrap: wrap; }
+.candidate-bottom > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  font-size: 12px;
+}
+@media (min-width: 901px) {
+  .feature-grid-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

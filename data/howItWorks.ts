@@ -1,26 +1,21 @@
 export const howItWorks = [
   {
-    title: 'Bring your research',
+    title: 'Ingest — bring your research',
     description:
-      'Upload PDFs, DOCX, LaTeX projects, and Git repositories — in batches of a hundred or more. Nothing needs to be tidied first.',
+      'Upload PDFs, DOCX, LaTeX projects, and Git repositories. Each document is read for research type and domain, author context and references, technical depth, and early novelty signals. Nothing needs to be tidied first.',
   },
   {
-    title: 'We understand the source',
-    description:
-      'Each document is read for research type and domain, author context and references, technical depth, and early novelty signals.',
-  },
-  {
-    title: 'Find the inventions',
+    title: 'Extract — find the inventions',
     description:
       'Novel claims and technical contributions, unusual combinations of known elements, and unexpected applications of existing work.',
   },
   {
-    title: 'What already exists?',
+    title: 'Evidence — what already exists?',
     description:
       'Three layers of prior art: patent databases (USPTO, WIPO, EPO), published literature (Crossref, arXiv, Scholar), and public code.',
   },
   {
-    title: 'Measure patentability',
+    title: 'Score — measure patentability',
     description:
       'Five dimensions — novelty, non-obviousness, enablement, scope, and commercial pull — each scored against the retrieved evidence.',
   },

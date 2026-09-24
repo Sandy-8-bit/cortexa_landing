@@ -7,8 +7,8 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
           <Radar />
         ) : (
           <>
-            <span className="giant-score text-[clamp(160px,_21vw,_290px)] tracking-[-0.09em] leading-[1]" data-counter>
-              87
+            <span className="giant-score text-[clamp(160px,_21vw,_290px)] tracking-[-0.09em] leading-[1]">
+              <span data-counter>87</span><small className="text-3xl tracking-normal">/100</small>
             </span>
             <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
               <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> VERDICT · HIGH PATENTABILITY
@@ -22,14 +22,14 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
           <div key={axis.label}>
             <div className="axis-label flex justify-between gap-[20px] mb-[14px] text-[15px]">
               <span>{axis.label}</span>
-              <span>{axis.score}</span>
+              <span>{axis.score}/100</span>
             </div>
             <div className="axis-track h-[2px] bg-(--line)">
               <div data-bar style={{ width: `${axis.score}%` }} />
             </div>
           </div>
         ))}
-        <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">LIMITING AXIS: SCOPE · CONFIDENCE 0.86</p>
+        <p className="text-xs text-(--muted)">Limiting axis: Scope · Confidence: High (86%)</p>
       </div>
     </div>
   );
@@ -42,7 +42,7 @@ function Radar() {
       className="radar block w-full max-w-[420px] m-auto"
       viewBox="0 0 340 320"
       role="img"
-      aria-label="Five-axis verdict 87: Novelty 92, Non-obviousness 84, Enablement 88, Scope 79, Commercial pull 90"
+      aria-label="Five-axis verdict 87/100: Novelty 92, Non-obviousness 84, Enablement 88, Scope 79, Commercial pull 90"
     >
       {[35, 70, 105].map((r) => (
         <polygon
@@ -71,7 +71,7 @@ function Radar() {
         strokeWidth="2"
       />
       <text x="170" y="165" textAnchor="middle" fill="var(--ink)" fontSize="40">
-        87
+        87/100
       </text>
       <text x="170" y="26" textAnchor="middle" fill="var(--subtle)" fontSize="11">
         Novelty

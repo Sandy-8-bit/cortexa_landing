@@ -1,5 +1,7 @@
 import { Button, Section, SectionHeading, FeatureGrid, FinalCta } from '@/components/ui/Primitives';
-import { DocumentCloud, TransformationVisual } from '@/components/visuals/ResearchVisual';
+import { ResearchSection } from './ResearchSection';
+import { TrustStrip } from './TrustStrip';
+import { DemoVideo } from './DemoVideo';
 import { Verdict } from '@/components/visuals/Verdict';
 import { HeroSection } from './HeroSection';
 import { PipelineSection } from './PipelineSection';
@@ -10,23 +12,9 @@ export function HomePage() {
   return (
     <>
       <HeroSection />
-      <Section id="research" className="research-section">
-        <div className="split-layout grid grid-cols-12 gap-[48px] items-center">
-          <SectionHeading
-            label="01 / THE UNTAPPED POTENTIAL"
-            title="Research is everywhere."
-            description="Your papers. Your code. Your half-finished notebooks and last year's grant report. Every one of them is a source of invention — and none of them are labelled that way."
-          />
-          <DocumentCloud />
-        </div>
-      </Section>
-      <Section className="transformation-section">
-        <SectionHeading
-          title="Upload your research. Cortexa listens. See what emerges."
-          description="Documents go in. Invention candidates come out — each one attached to the evidence that earned it a place on the list."
-        />
-        <TransformationVisual />
-      </Section>
+      <ResearchSection />
+      <TrustStrip />
+      <DemoVideo />
       <PipelineSection />
       <Section className="alternate">
         <SectionHeading
@@ -63,6 +51,12 @@ export function HomePage() {
           title="Built for people who turn research into what's next."
         />
         <FeatureGrid items={personas} />
+        <div className="mt-10 border-t border-(--line) pt-8">
+          <p className="technical-label">SEE THE SAMPLE WORKFLOW</p>
+          <h3>From research to an evidence-backed filing discussion.</h3>
+          <p>Explore a sample corpus, inspect the ranked candidates, and follow the evidence behind a recommendation.</p>
+          <Button href="/product" variant="ghost">Try the sample walkthrough</Button>
+        </div>
       </Section>
       <FinalCta />
     </>

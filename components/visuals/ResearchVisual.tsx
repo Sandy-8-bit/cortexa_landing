@@ -70,8 +70,10 @@ export function ResearchVisual() {
         </div>
         <div className="discovered-card absolute right-0 bottom-[3px] w-[216px] bg-(--cx-white) text-(--cx-black) p-[17px] [border:1px_solid_var(--cx-white)]">
           <div className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
-            <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> INVENTION IDENTIFIED <span className="score">87</span>
+            <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> INVENTION IDENTIFIED <span className="score">87/100</span>
           </div>
+          <small className="block text-[10px]">Confidence: High (86%)</small>
+          <small className="block text-[10px]">Estimate, not a legal opinion.</small>
           <p>
             Gradient-annealed
             <br />
@@ -207,9 +209,11 @@ export function PipelineVisual({ stage }: { stage: number }) {
   if (stage === 2) return <LatticeVisual evidence />;
   return (
     <div className="pipeline-visual score-visual [margin:32px_0] p-[36px] min-h-[265px] bg-(--surface) [border:1px_solid_var(--line)] text-center">
-      <span data-counter>87</span>
+      <span><span data-counter>87</span><small className="text-2xl">/100</small></span>
       <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">PATENTABILITY INDEX</p>
-      <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">CONFIDENCE 0.86</p>
+      <p className="text-xs text-(--muted)">Limiting axis: Scope · Confidence: High (86%)</p>
+      <p className="text-xs text-(--muted)">Limiting axis: the weakest dimension holding the score back.</p>
+      <p className="text-xs text-(--muted)">Scores are calibrated estimates, not legal opinions.</p>
     </div>
   );
 }

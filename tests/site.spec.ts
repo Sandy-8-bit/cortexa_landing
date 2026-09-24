@@ -45,7 +45,11 @@ test('mobile menu supports keyboard dismissal and closes on navigation', async (
 test('opportunity and agency filters return the correct records', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
+  await expect(page.locator('.candidate-card')).toHaveCount(6);
+  await page.getByRole('button', { name: 'Show all 12 candidates' }).click();
   await expect(page.locator('.candidate-card')).toHaveCount(12);
+  await page.getByRole('button', { name: 'Show fewer candidates' }).click();
+  await expect(page.locator('.candidate-card')).toHaveCount(6);
   await page.getByRole('button', { name: 'High potential 4' }).click();
   await expect(page.locator('.candidate-card')).toHaveCount(4);
   await page.getByRole('button', { name: 'Emerging 5' }).click();
@@ -149,8 +153,8 @@ test('normal-motion content stays visible and route transitions do not throw', a
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
   await expect(page.locator('.hero-line').last()).toBeVisible();
-  await page.getByRole('link', { name: 'Explore Cortexa' }).click();
-  await expect(page).toHaveURL(/\/product$/);
+  await page.locator('.hero').getByRole('link', { name: 'Book a demo' }).click();
+  await expect(page).toHaveURL(/\/contact$/);
   await expect(page.locator('h1')).toHaveCSS('opacity', '1');
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Evidence', exact: true }).click();
   await expect(page.locator('.graph-network')).toBeVisible();

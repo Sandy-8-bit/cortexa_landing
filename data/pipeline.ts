@@ -25,7 +25,7 @@ export const pipeline = [
     title: 'Turn evidence into insight',
     description:
       'Five dimensions, each scored against the retrieved records and each carrying its own citations. The number summarises the argument; it never replaces it.',
-    output: 'index 87 · confidence 0.86 · limiting axis: scope',
+    output: 'Index 87/100 · Confidence: High (86%) · Limiting axis: Scope (the weakest dimension holding the score back)',
   },
 ];
 export const fragments = [

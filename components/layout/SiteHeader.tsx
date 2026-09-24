@@ -55,7 +55,7 @@ export function SiteHeader() {
           <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
             {links(3, 6)}
             <Link className="nav-cta ml-[8px] pl-[22px] [border-left:1px_solid_var(--line)]" href="/contact">
-              Start with Cortexa
+              Book a demo
               <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
           </div>

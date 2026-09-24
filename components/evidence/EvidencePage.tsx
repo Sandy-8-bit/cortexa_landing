@@ -1,4 +1,4 @@
-import { PageIntro, Section, SectionHeading, FinalCta } from '@/components/ui/Primitives';
+import { PageIntro, Section, FinalCta } from '@/components/ui/Primitives';
 import { EvidenceGraph } from './EvidenceGraph';
 export function EvidencePage() {
   return (
@@ -8,7 +8,10 @@ export function EvidencePage() {
         title="Don't just get an answer. Trace it."
         description="Select any node to open the record behind it."
       />
-      <Section className="first-section">
+      <Section id="candidate-01" className="first-section scroll-mt-24">
+        <p className="technical-label">CANDIDATE 01 · ILLUSTRATIVE EVIDENCE</p>
+        <h2>Gradient-annealed electrolyte interface</h2>
+        <p>Sample score: 87/100 · Confidence: High (86%). These example records demonstrate the workflow.</p>
         <EvidenceGraph />
       </Section>
       {/* <Section>

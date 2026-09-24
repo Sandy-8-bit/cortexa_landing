@@ -15,6 +15,7 @@ export function EnginePanels({ detailed = false }: { detailed?: boolean }) {
             <span>{engine.name}</span>
           </div>
           <h3>{detailed ? engine.title : engine.question}</h3>
+          <p>{engine.name === 'Harvest' ? "Finds inventions in work you've already done." : 'Suggests new directions you could patent next.'}</p>
           {detailed && <p>{engine.description}</p>}
           <ol>
             {engine.steps.map((step, i) => (
