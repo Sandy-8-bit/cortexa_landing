@@ -45,17 +45,17 @@ test('mobile menu supports keyboard dismissal and closes on navigation', async (
 test('opportunity and agency filters return the correct records', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await expect(page.locator('.candidate-card')).toHaveCount(6);
+  await expect(page.locator('.opportunity-row')).toHaveCount(6);
   await page.getByRole('button', { name: 'Show all 12 candidates' }).click();
-  await expect(page.locator('.candidate-card')).toHaveCount(12);
+  await expect(page.locator('.opportunity-row')).toHaveCount(12);
   await page.getByRole('button', { name: 'Show fewer candidates' }).click();
-  await expect(page.locator('.candidate-card')).toHaveCount(6);
+  await expect(page.locator('.opportunity-row')).toHaveCount(6);
   await page.getByRole('button', { name: 'High potential 4' }).click();
-  await expect(page.locator('.candidate-card')).toHaveCount(4);
+  await expect(page.locator('.opportunity-row')).toHaveCount(4);
   await page.getByRole('button', { name: 'Emerging 5' }).click();
-  await expect(page.locator('.candidate-card')).toHaveCount(5);
+  await expect(page.locator('.opportunity-row')).toHaveCount(5);
   await page.getByRole('button', { name: 'Adjacent 3' }).click();
-  await expect(page.locator('.candidate-card')).toHaveCount(3);
+  await expect(page.locator('.opportunity-row')).toHaveCount(3);
   await page.goto('/agencies');
   await expect(page.locator('tbody tr')).toHaveCount(8);
   await page.getByRole('button', { name: 'Awaiting your review' }).click();

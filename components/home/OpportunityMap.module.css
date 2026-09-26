@@ -1,0 +1,55 @@
+.map { min-width: 0; }
+.overview { display: grid; grid-template-columns: 1fr 2fr; border: 1px solid var(--line); background: var(--canvas); }
+.total { padding: 32px; background: var(--cx-black); color: var(--cx-white); }
+.total > svg { color: #a8bfff; margin-bottom: 20px; }
+.total strong { display: flex; align-items: baseline; gap: 16px; font-size: 64px; font-weight: 400; line-height: 1; letter-spacing: -.06em; }
+.total strong span { font-size: 14px; letter-spacing: -.01em; }
+.total p { color: #aaa; font-size: 12px; margin-top: 16px; }
+.distribution { padding: 32px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.overviewLabel { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 9px; letter-spacing: .06em; }
+.segments { display: grid; grid-template-columns: 4fr 5fr 3fr; gap: 5px; margin: 24px 0; height: 28px; }
+.segments span:first-child { background: var(--ink); }
+.segments span:nth-child(2) { background: #8a8a87; }
+.segments span:last-child { background: repeating-linear-gradient(135deg, transparent 0 4px, #aaa 4px 5px); border: 1px solid var(--line-strong); }
+.categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.categories button { display: flex; align-items: flex-start; text-align: left; gap: 9px; background: transparent; padding: 8px 0; border-bottom: 1px solid transparent; font-size: 12px; }
+.categories button[aria-pressed='true'], .categories button:hover { border-color: var(--ink); }
+.categories button > svg:last-child { margin-left: auto; }
+.categories small { display: block; margin-top: 5px; font-size: 10px; color: var(--muted); }
+.listHeader { display: flex; justify-content: space-between; gap: 20px; padding: 0 0 16px; font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+.list { border-top: 1px solid var(--ink); }
+.row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 170px 130px; gap: 28px; align-items: center; padding: 28px 20px; border-bottom: 1px solid var(--line); transition: background .2s; }
+.row:hover { background: var(--canvas); }
+.number { align-self: start; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.badge { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; text-transform: uppercase; letter-spacing: .05em; color: var(--subtle); }
+.content h3 { font-size: clamp(20px, 2vw, 27px); line-height: 1.2; letter-spacing: -.03em; margin: 10px 0 8px; }
+.content p { max-width: 600px; font-size: 13px; }
+.score strong { font-size: 36px; font-weight: 400; letter-spacing: -.05em; }
+.score small { font-size: 11px; color: var(--muted); margin-left: 4px; letter-spacing: 0; }
+.score > span { display: block; font-size: 9px; color: var(--muted); margin-top: 8px; }
+.track { height: 3px; background: var(--line); margin-top: 8px; }
+.track > span { display: block; height: 100%; background: var(--ink); }
+.evidence { display: flex; align-items: center; justify-content: flex-end; gap: 10px; min-height: 44px; font-size: 12px; }
+.evidence:hover { color: var(--cx-blue); }
+@media (max-width: 1050px) {
+  .overview { grid-template-columns: 1fr; }
+  .total { display: flex; align-items: center; gap: 24px; }
+  .total > svg { margin: 0; }
+  .total p { margin: 0 0 0 auto; }
+  .row { grid-template-columns: 28px minmax(0, 1fr) 140px; gap: 20px; }
+  .evidence { grid-column: 2 / -1; justify-content: flex-start; min-height: 30px; }
+}
+@media (max-width: 600px) {
+  .total, .distribution { padding: 24px 18px; }
+  .total { flex-wrap: wrap; gap: 16px; }
+  .total strong { font-size: 48px; }
+  .total p { flex-basis: 100%; margin: 0; }
+  .overviewLabel > span:last-child, .listHeader > span:last-child { display: none; }
+  .categories { gap: 12px; }
+  .categories button { flex-wrap: wrap; font-size: 10px; }
+  .categories button > svg:last-child { display: none; }
+  .categories button > span { width: 100%; }
+  .row { grid-template-columns: 22px minmax(0, 1fr); gap: 14px; padding: 24px 0; }
+  .score { grid-column: 2; max-width: 220px; }
+  .evidence { grid-column: 2; }
+}

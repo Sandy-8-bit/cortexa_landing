@@ -1,6 +1,10 @@
 import { engines } from '@/data/content';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Files, Lightbulb, Search, ChartNoAxesColumnIncreasing, Map, Sprout, Network, Compass } from 'lucide-react';
 import Link from 'next/link';
+const stepIcons = [
+  [Files, Lightbulb, Search, ChartNoAxesColumnIncreasing],
+  [Map, Sprout, Network, Compass],
+];
 export function EnginePanels({ detailed = false }: { detailed?: boolean }) {
   return (
     <div className="engine-panels grid [grid-template-columns:1fr_1fr] gap-0 [border-top:1px_solid_var(--line)] [border-bottom:1px_solid_var(--line)]">
@@ -18,13 +22,16 @@ export function EnginePanels({ detailed = false }: { detailed?: boolean }) {
           <p>{engine.name === 'Harvest' ? "Finds inventions in work you've already done." : 'Suggests new directions you could patent next.'}</p>
           {detailed && <p>{engine.description}</p>}
           <ol>
-            {engine.steps.map((step, i) => (
+            {engine.steps.map((step, i) => {
+              const Icon = stepIcons[index][i];
+              return (
               <li key={step}>
                 <span className="engine-step-number text-[11px] text-(--muted)">0{i + 1}</span>
+                <span className="engine-step-icon inline-flex shrink-0 items-center justify-center" aria-hidden="true"><Icon size={18} strokeWidth={1.5} /></span>
                 <span>{step}</span>
-                {i < 3 && <ArrowDown size={13} />}
               </li>
-            ))}
+              );
+            })}
           </ol>
           {detailed ? (
             <p>{engine.detail}</p>

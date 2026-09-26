@@ -1,23 +1,40 @@
 'use client';
-import { useState } from 'react';
+
 import { Button, Section, SectionHeading } from '@/components/ui/Primitives';
 
-// Replace with the final 60–90 second Cortexa recording when available.
-const demoVideoUrl = 'https://example.com/cortexa-demo.mp4';
+const demoVideoUrl = 'https://www.youtube.com/embed/tRXJ3PiyShY';
 
 export function DemoVideo() {
-  const [unavailable, setUnavailable] = useState(false);
   return (
-    <Section id="demo-video">
-      <SectionHeading label="PRODUCT WALKTHROUGH" title="See research become opportunity." description="A 60–90 second tour from source documents to ranked invention candidates." />
-      <video className="aspect-video w-full border border-(--line) bg-(--surface)" controls preload="none" aria-label="Cortexa demo video placeholder" aria-describedby="demo-video-note" onError={() => setUnavailable(true)}>
-        <source src={demoVideoUrl} type="video/mp4" onError={() => setUnavailable(true)} />
-        Your browser does not support video playback.
-      </video>
-      <p id="demo-video-note" role="status" className="mt-4 text-sm text-(--muted)">
-        {unavailable ? 'The demo recording is not available yet. Try the interactive sample below.' : ''}
-      </p>
-      <Button href="/product" variant="ghost">Try the interactive sample</Button>
+    <Section id="demo-video" className="py-12 md:py-16">
+      <div className="mx-auto ">
+
+        <SectionHeading
+          label="PRODUCT WALKTHROUGH"
+          title="See research become opportunity."
+          description="A 60–90 second tour from source documents to ranked invention candidates."
+        />
+
+        {/* YouTube Video */}
+        <div className="mt-6 overflow-hidden rounded-lg border border-(--line) bg-(--surface)">
+          <iframe
+            src={demoVideoUrl}
+            title="Cortexa Product Walkthrough"
+            className="aspect-video w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+
+        {/* CTA */}
+        <div className="mt-4 flex justify-end">
+          <Button href="/product" variant="ghost">
+            Try the interactive sample →
+          </Button>
+        </div>
+
+      </div>
     </Section>
   );
 }

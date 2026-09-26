@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowUp, Sparkles, Layers, ScanLine } from 'lucide-react';
+import styles from './OpportunityMap.module.css';
 import Link from 'next/link';
 import { candidates, candidateFilters, categoryLabels, type Candidate } from '@/data/candidates';
 
@@ -40,19 +41,19 @@ export function OpportunityMap() {
   );
   const visible = filter === 'all' && !expanded ? filtered.slice(0, 6) : filtered;
   return (
-    <div>
-      <div className="metrics grid grid-cols-4 [border-block:1px_solid_var(--line)] mb-[38px] [padding:30px_0]">
-        {[
-          ['12', 'Candidates found'],
-          ['4', 'High potential'],
-          ['5', 'Emerging'],
-          ['3', 'Adjacent / defensive'],
-        ].map(([value, label]) => (
-          <div key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
+    <div className={styles.map}>
+      <div className={styles.overview}>
+        <div className={styles.total}><ScanLine size={22} strokeWidth={1.4} aria-hidden="true" /><strong>12<span>invention candidates</span></strong><p>One corpus. A spectrum of possibilities.</p></div>
+        <div className={styles.distribution}>
+          <div className={styles.overviewLabel}><span>OPPORTUNITY LANDSCAPE</span><span>12 CANDIDATES / 3 DIRECTIONS</span></div>
+          <div className={styles.segments} aria-hidden="true"><span /><span /><span /></div>
+          <div className={styles.categories}>
+            {(['high', 'emerging', 'adjacent'] as const).map((category, i) => {
+              const Icon = [ArrowUp, Sparkles, Layers][i];
+              return <button key={category} onClick={() => { setFilter(category); setExpanded(false); }} aria-pressed={filter === category}><Icon size={16} aria-hidden="true" /><span>{categoryLabels[category]}<small>{candidates.filter(c => c.category === category).length} candidates</small></span><ArrowUpRight size={14} aria-hidden="true" /></button>;
+            })}
           </div>
-        ))}
+        </div>
       </div>
       <div className="filter-bar flex items-center flex-wrap gap-[8px] [margin:28px_0]" aria-label="Filter candidates">
         {candidateFilters.map((item) => (
@@ -67,14 +68,28 @@ export function OpportunityMap() {
       <p className="sr-only" role="status">
         {visible.length} candidates shown
       </p>
-      <div id="opportunity-candidates" className="candidate-grid grid grid-cols-3 gap-[1px] bg-(--line) [border:1px_solid_var(--line)]" key={filter}>
-        {visible.map((candidate) => (
-          <CandidateCard
-            key={candidate.title}
-            candidate={candidate}
-            index={candidates.indexOf(candidate)}
-          />
-        ))}
+      <div className={styles.listHeader}><span>RANKED INVENTION CANDIDATES</span><span>PATENTABILITY INDEX / 100</span></div>
+      <div id="opportunity-candidates" className={styles.list} key={filter}>
+        {visible.map((candidate) => {
+          const index = candidates.indexOf(candidate);
+          const Icon = candidate.category === 'high' ? ArrowUp : candidate.category === 'emerging' ? Sparkles : Layers;
+          return (
+            <article key={candidate.title} className={`${styles.row} opportunity-row`}>
+              <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
+              <div className={styles.content}>
+                <span className={styles.badge}><Icon size={12} aria-hidden="true" />{categoryLabels[candidate.category]}</span>
+                <h3>{candidate.title}</h3>
+                <p>{candidate.description}</p>
+              </div>
+              <div className={styles.score}>
+                <strong>{candidate.score}<small>/100</small></strong>
+                <div className={styles.track} aria-hidden="true"><span style={{ width: `${candidate.score}%` }} /></div>
+                <span>{index === 0 ? 'Confidence: High (86%)' : 'Confidence: not assessed'}</span>
+              </div>
+              <Link className={styles.evidence} href={index === 0 ? '/evidence#candidate-01' : '/evidence'} aria-label={`View sample evidence for ${candidate.title}`}><span>View evidence</span><ArrowUpRight size={18} aria-hidden="true" /></Link>
+            </article>
+          );
+        })}
       </div>
       {filter === 'all' && (
         <button className="button ghost mt-6 inline-flex min-h-12 items-center border border-(--ink) px-6 py-3 text-sm" aria-expanded={expanded} aria-controls="opportunity-candidates" onClick={() => setExpanded(!expanded)}>

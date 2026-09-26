@@ -51,12 +51,7 @@ export function HomePage() {
           title="Built for people who turn research into what's next."
         />
         <FeatureGrid items={personas} />
-        <div className="mt-10 border-t border-(--line) pt-8">
-          <p className="technical-label">SEE THE SAMPLE WORKFLOW</p>
-          <h3>From research to an evidence-backed filing discussion.</h3>
-          <p>Explore a sample corpus, inspect the ranked candidates, and follow the evidence behind a recommendation.</p>
-          <Button href="/product" variant="ghost">Try the sample walkthrough</Button>
-        </div>
+
       </Section>
       <FinalCta />
     </>
