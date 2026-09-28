@@ -1,0 +1,469 @@
+# Cortexa: landing page spec
+
+Draft v0.1, 28 Sep 2026. This is a working plan. Copy, tokens and sections are all open to change.
+
+---
+
+## 0. What this page has to do
+
+**One page, two readers.**
+
+- **Users:** researchers, reviewers, patent teams and IP agencies. They need to understand what Cortexa does within seconds, see it working, and trust it with unpublished work.
+- **Investors:** they read the same page, and the business shows up in the margins as small annotations. There is no separate pitch block.
+
+**The product in one sentence:** Cortexa reads a team's research (papers, code, lab reports), finds the inventions hidden inside, checks each one against prior art, and ranks them with evidence traced back to the source paragraph.
+
+**Page rules**
+
+1. One idea per screen. If a section needs more than about 40 words of body copy, the illustration isn't doing its job.
+2. Show, then say. Every section leads with a drawing, and the words caption it.
+3. Every number is either real or visibly a placeholder (`{{LIKE_THIS}}`). Placeholders render as a hatched box in builds so they can never ship by accident.
+4. Honesty about limits is a feature. The trust section says what Cortexa can't do.
+
+---
+
+## 1. Visual concept: line and pixel
+
+**The metaphor:** research is architecture. Everything a team has already built is drawn in fine graphite line. Cortexa is a blue pixel layer that scans across the drawing and lights up the load-bearing ideas.
+
+> **Line = what you have. Pixel = what Cortexa found.**
+
+The line art draws from three subject families, mixed across the page:
+
+| Family | Subjects | Meaning | Used in |
+|---|---|---|---|
+| Classical | Colonnades, domes, library halls, porticos | Knowledge, permanence | Hero, verdict, trust, final CTA |
+| Lab and campus | Lab buildings in section cut, benches, lecture halls, server racks | Where research happens | Problem, audiences, agencies |
+| Blueprint | Technical drawings of documents, circuit traces, claim diagrams, scaffolding | What could come next | How it works, Seed, evidence trail |
+
+**Rules for the mix**
+
+- Line art is always graphite: a 1px stroke at render size with no fills.
+- Pixels are always blue squares snapped to an 8px grid.
+- Pixels appear only where Cortexa does something. They are never decoration.
+- The move from line to pixel is a hard scan edge, not a gradient. This follows the clean vertical cut on the Colosseum in the reference image.
+- Pixel coverage stays at or below 30% of any illustration. The blue has to stay precious.
+
+---
+
+## 2. Design tokens
+
+### Color
+
+| Token | Hex | Use |
+|---|---|---|
+| Paper | `#FFFFFF` | Page base. Pure white, no cream. |
+| Drafting grey | `#F5F6F9` | Alternate panels, form fields |
+| Rule | `#E3E6EE` | Hairlines, dot grid |
+| Graphite | `#7D8392` | All line art, secondary text |
+| Ink | `#12162B` | Text. A blue-black, so it sits well with the blue. |
+| Cyanotype | `#2244F0` | Primary blue: pixels, primary buttons, focus |
+| Periwinkle | `#7B8AF7` | Secondary pixels, the Seed engine |
+| Blueprint navy | `#0B1233` | Dark sections |
+
+**Dark sections:** the background is navy, line art is `#3A4470`, text is `#E9ECF7`, and pixels stay cyanotype and periwinkle. They should read like a blueprint, not black.
+
+**Harvest and Seed:** the old HTML used amber and teal for the two engines. Here they become **solid cyanotype pixels** for Harvest and **outlined periwinkle pixels** for Seed.
+
+### Type
+
+| Face | Role | Settings |
+|---|---|---|
+| **Newsreader** (Google Fonts, variable, optical sizes) | Headlines, body, buttons | Headlines weight 300–400, tracking −1%, line-height 1.05. Body weight 400, 18–20px, line-height 1.55. |
+| **IBM Plex Mono** | Drawing annotations only: callouts, metric values, source names, figure captions | 12–13px, sentence case. Never used for headings or paragraphs. |
+
+The type scale is 88 / 64 / 40 / 24 / 19 / 13 on desktop and 48 / 40 / 28 / 20 / 17 / 12 on mobile.
+
+Claude's own serif is proprietary. Newsreader is the closest free match, with the same light, bookish display feel, and Source Serif 4 is the fallback option.
+
+Two type rules apply everywhere:
+- Headlines are one color. There is no highlighted word, because the drawings carry the emphasis.
+- There are no all-caps eyebrow labels above headings.
+
+### Texture
+
+- **Dot grid** on light sections: 24px spacing, `#E3E6EE` dots, taken from reference image 2.
+- **Square pixel grid** only in dark sections, as the field the pixel art lives on, taken from reference image 1.
+
+### Layout: the drawing sheet
+
+Each section is laid out like one sheet from an architectural drawing set. The drawing gets the big field, and the words sit in a title block anchored bottom-left. Text is always left-aligned, with a 1200px max width on a 12-column grid.
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                                                          │
+│            DRAWING FIELD (line art + pixels)             │
+│                  ── callout ──●                          │
+│                                                          │
+├───────────────────────┬──────────────────────────────────┤
+│ Headline              │                                  │
+│ One line of body.     │  (optional: CTA or interaction)  │
+│ Fig. 4  caption       │                                  │
+└───────────────────────┴──────────────────────────────────┘
+```
+
+On mobile, the drawing goes on top, the title block sits below it, and callouts collapse into a list under the drawing.
+
+### Components
+
+- **Primary button:** a cyanotype fill with white Newsreader text and a 2px radius.
+- **Secondary action:** an ink text link with an underline. No arrows are appended to button text.
+- **Callout:** a leader line from a point on the drawing to a mono annotation, styled like a dimension line on a blueprint. This is how investor metrics are woven in (see section 3).
+- **Tile:** used for trust and audiences. It has a hairline border, no shadow and square corners.
+- **Title block:** headline, one line of body, and a figure caption.
+
+### Motion
+
+The page has one orchestrated moment: the **hero scan**. On load, the line art draws in, then a vertical scan edge sweeps left to right over about 1.6s and leaves blue pixels on three "invention" spots.
+
+Everything else is static unless the user acts: the how-it-works stepper, the evidence graph nodes, the FAQ accordion. With `prefers-reduced-motion`, the page shows the end state immediately.
+
+---
+
+## 3. Investor weave: callouts
+
+Investor information lives as **annotations on the drawings**, the way an architect marks dimensions and materials. A user can ignore them, and an investor scanning the page picks up the whole story.
+
+- Each section has at most two callouts.
+- A callout has the form `value` + a short label, for example `{{ARR}}  annual recurring revenue`.
+- Only **public-safe** metrics go on the page. Sensitive ones, such as margin, burn and NRR, go behind an "Investors" link in the footer. See the registry in section 5.
+
+**The story the callouts tell, top to bottom:**
+traction, then market, then speed and quality, then land-and-expand, then moat, then a second market (agencies), then pricing model, then trust.
+
+---
+
+## 4. Sections
+
+### S1. Navigation
+
+- **Left:** the Cortexa wordmark in Newsreader, with a 5×5 pixel mark.
+- **Links:** How it works, Engines, Evidence, Pricing, Trust.
+- **Right:** a primary button, *Run a corpus*.
+- **Behavior:** sticky, white with a bottom hairline, and it shrinks after scroll.
+
+---
+
+### S2. Hero
+
+**Drawing:** a wide classical colonnade in graphite. Its columns are built from stacked documents, and a faint blueprint grid sits behind it. The scan edge stops at about 60% of the width, leaving blue pixels lit on three spots inside the columns.
+
+**Copy**
+
+- **H1:** Your research has more to say.
+- **Sub:** Cortexa finds the inventions hidden in your papers, code and lab notes, and shows the evidence behind each one.
+- **Buttons:** *Run a corpus* (primary) and *See how it works* (link).
+
+**Callouts**
+
+- `{{TEAMS_COUNT}}  research teams`, pointing at the colonnade.
+- `{{DOCS_ANALYSED}}  documents read`, pointing at the document stack.
+
+---
+
+### S3. In and out strip (dark, thin band)
+
+**Drawing:** pixel file icons (PDF, DOCX, LaTeX, Git) flow into the Cortexa pixel mark, which outputs a short ranked list drawn as pixel bars.
+
+**Copy**
+
+- **Left label:** Goes in: papers, code, reports, notebooks
+- **Right label:** Comes out: ranked inventions with prior art
+- **Source row (mono):** USPTO, EPO, WIPO, arXiv, Crossref, GitHub
+
+**Callouts:** none.
+
+---
+
+### S4. The problem
+
+**Drawing:** a university lab building shown in section cut. Every room is full of document stacks, and only a few documents glow pixel-blue.
+
+**Copy**
+
+- **H2:** Every lab is sitting on inventions. None of them are labelled.
+- **Body:** Papers, notebooks, grant reports and code all hold patentable ideas. Nobody has time to read them that way.
+
+**Callouts**
+
+- `{{MARKET_SIGNAL}}`: one sourced stat about research that is never assessed for IP. It must be cited.
+- `{{TAM}}  addressable market`.
+
+---
+
+### S5. How it works: four passes
+
+This is a real sequence, so numbered markers are justified here.
+
+**Drawing:** one blueprint sheet of a document. Each pass adds a layer to the same drawing:
+
+1. Dimension labels classify the sheet.
+2. Fragments of the sheet turn pixel-blue.
+3. Leader lines connect out to three small external drawings: a patent, a paper and a repo.
+4. A stack of pixel bars rises beside the sheet.
+
+**Copy**
+
+- **H2:** Four passes. Each one asks a harder question.
+
+| # | Name | Line (12 words max) | Sample output (mono, labelled "Sample") |
+|---|---|---|---|
+| 1 | Read | Works out what each document is: field, method, depth. | 14 documents, 3 fields, 412 references |
+| 2 | Find | Pulls out novel claims, each tied to its page and line. | 12 candidates, 38 claim fragments |
+| 3 | Check | Searches patents, papers and code, including records that argue against. | 11 records, 2 against |
+| 4 | Rank | Scores five dimensions. Every score carries its citations. | Index 87, confidence 0.86 |
+
+The pass names are changed from the HTML's Ingest / Extract / Evidence / Score to plain verbs.
+
+**Callouts**
+
+- `25 docs in minutes, 2,000 overnight`. This comes from the HTML; confirm it is still true.
+- `{{QUALITY_METRIC}}`, for example agreement rate with attorney review.
+
+**Interaction:** click a pass or scroll through the steps. With reduced motion, all four layers show at once.
+
+---
+
+### S6. Two engines: Harvest and Seed
+
+**Drawing:** one building split down the middle.
+
+- **Left half, Harvest:** the existing classical structure, with its strongest elements filled in solid cyanotype pixels.
+- **Right half, Seed:** blueprint scaffolding that extends the building up and out, drawn in outlined periwinkle pixels. Lattice lines show continuation claims.
+
+**Copy**
+
+- **H2:** Look at what you've built. Then at what comes next.
+- **Harvest:** *What's already here?* Finds inventions in finished work and ranks them by maturity. Best before a review cycle or after a grant closes.
+- **Seed:** *What could come next?* Reads your roadmap too, and points to directions nobody has claimed. Best for roadmap planning or entering a new market.
+- **Footer line:** Use both. Harvest sets the floor, Seed sets the direction.
+
+**Callouts**
+
+- `{{SEED_ATTACH}}  of paid teams also use Seed`. This carries the land-and-expand story.
+
+---
+
+### S7. The verdict
+
+**Drawing:** a portico with five columns, each built from pixel blocks up to its score. The pediment on top holds the overall index. The shortest column carries a callout.
+
+| Column | Sample score |
+|---|---|
+| Novelty | 92 |
+| Non-obviousness | 84 |
+| Enablement | 88 |
+| Scope | 79 (annotated as "weakest: reads narrowly") |
+| Commercial pull | 90 |
+
+**Copy**
+
+- **H2:** A score you can argue with.
+- **Body:** Five dimensions, each with its own evidence. The weakest one is always named.
+- **Caption (mono):** Sample: gradient-annealed electrolyte interface
+
+**Callouts:** `{{CALIBRATION}}` (optional).
+
+---
+
+### S8. Evidence trail
+
+**Drawing:** a blueprint-style node graph. The verdict node sits at the top and branches to a patent, a paper, a code repository and market activity. Each branch ends in a small document drawing.
+
+**Copy**
+
+- **H2:** Every answer has a paper trail.
+- **Body:** Each score links to evidence. Each piece of evidence links to a source you can open.
+
+**Interaction:** tapping a node opens its record card, showing source, date, confidence and one line on why it matters. Use the four sample records from the HTML: the closest patent, a paper giving a mixed signal, a code repository supporting enablement, and three competitor filings in 18 months.
+
+**Callouts**
+
+- `{{EVIDENCE_RECORDS}}  linked records to date`. This carries the moat story: the evidence graph compounds.
+
+---
+
+### S9. Opportunity map (product view)
+
+**Drawing:** a browser window drawn in line art. The dashboard inside is rendered as real UI with pixel accents.
+
+**Copy**
+
+- **H2:** See every opportunity at once.
+- **Body:** Ranked by potential, filterable, and ready to export for your review board.
+- **Sample stats in the UI:** 12 candidates, split into 4 high potential, 5 emerging and 3 adjacent.
+- **Export chips:** PDF brief, CSV table, JSON run.
+
+**Callouts:** none, so this section stays about the product.
+
+---
+
+### S10. Who it's for
+
+**Drawing:** four tiles, each with a small line-art icon and a single pixel accent.
+
+| Audience | Icon | Line |
+|---|---|---|
+| Researchers | Lab bench | Find patent angles in work you filed away years ago. |
+| Reviewers | Magnifier over a page | See the evidence behind each call, so dropping an idea is as defensible as filing it. |
+| Patent teams | Shielded folder | Automate the first-pass screen. Spend attorney hours on strategy. |
+| IP agencies | Building with many rooms | Run discovery for every client from one desk. |
+
+**Copy**
+
+- **H2:** Built for people who turn research into what's next.
+
+**Callouts**
+
+- `{{DESIGN_PARTNERS}}  design partners across segments`.
+
+---
+
+### S11. For agencies (dark section)
+
+**Drawing:** a building elevation in navy blueprint. Each walled room is one client workspace, and each window shows a pixel status. A sample docket table sits beside it, using the sample Meridian IP Partners data from the HTML.
+
+**Copy**
+
+- **H2:** Run discovery for every client from one desk.
+- **Three points:**
+  - Walled workspaces per client.
+  - Usage becomes a billing line.
+  - Reports carry your firm's name.
+- **Flow diagram:** a pixel line with five stops (a real sequence): Intake, First pass overnight, Agent review, Client confirms, Draft and bill.
+- **Button:** *Request agency access*
+
+**Callouts**
+
+- `{{AGENCY_ACCOUNTS}}  agencies onboarded`. This carries the second-market story.
+
+---
+
+### S12. Pricing
+
+**Copy**
+
+- **H2:** Priced per corpus, not per seat.
+- **Body:** Reviewers, attorneys and PIs need the same evidence. They shouldn't each pay to see it.
+
+| Tier | Price | For | Key inclusions |
+|---|---|---|---|
+| Lab | $0 | First 25 documents, one run | Harvest, full evidence trail, PDF and CSV export |
+| Department | $1,900/mo | Up to 2,000 docs/month | Harvest and Seed, unlimited reviewers, Git and Drive connectors, audit export |
+| Agency | $3,400/mo | Up to 10 client workspaces | Everything in Department, walled workspaces, shared docket, white-label briefs, billing export |
+| Enterprise | Talk to us | Portfolio scale | Private or on-prem deployment, custom prior-art sources, SSO, named engineer |
+
+**Note under the table:** A document is one PDF, DOCX, LaTeX project or repository snapshot. A 400-page thesis counts once. Re-runs only charge for new material.
+
+**Callouts:** none. The pricing model itself is the investor signal, so there's no need to annotate it.
+
+---
+
+### S13. Trust
+
+**Drawing:** a classical treasury building in line art, with a pixel lock set into its door.
+
+**Copy**
+
+- **H2:** Unpublished research needs a careful host.
+
+| Tile | Line |
+|---|---|
+| Never used for training | Contractual, not a setting. |
+| Encrypted | TLS 1.3 in transit, AES-256 at rest, keys per workspace. |
+| You set retention | Keep everything, or purge sources the moment a run ends. |
+| Nothing leaves without you | Cortexa never publishes or files, and prior-art searches don't expose your text. |
+| Full provenance log | Every run records sources, queries and model versions. |
+| Your judgement stays yours | Cortexa ranks evidence. It doesn't give legal advice. |
+
+**Known limits (one line, deliberately visible):** Coverage is strongest for USPTO, EPO and WIPO, and thinner for non-English filings before 2005. When confidence is low, the card says so.
+
+**Callouts**
+
+- `{{SECURITY_CERT}}`, for example SOC 2 status.
+
+---
+
+### S14. FAQ
+
+This is an accordion with the first item open.
+
+1. **Does Cortexa file patents?**
+   No. It finds candidates, evidence and rankings. Drafting and filing stay with your attorneys.
+2. **How is it different from a prior-art search tool?**
+   A search tool answers the question you wrote. Cortexa reads your research to work out which questions to ask.
+3. **What if my research is confidential?**
+   It's never used for training, it's encrypted, and you control retention. ⚠️ The HTML had the wrong answer text here, so this needs confirming.
+4. **How accurate are the scores?**
+   They are calibrated estimates, not legal opinions. Low confidence is shown on the card.
+5. **Can it read code?**
+   Yes. Commits and tests count as evidence of reduction to practice.
+6. **How long does a run take?**
+   Minutes for 25 documents, and overnight for 2,000.
+7. **Which languages does it handle?**
+   English, German, Japanese, Korean and Chinese.
+
+---
+
+### S15. Final call to action (dark section)
+
+**Drawing:** the hero colonnade redrawn at night in navy, now fully pixel-lit. This is the payoff of the scan that started in the hero.
+
+**Copy**
+
+- **H2:** Your next patent may already be written.
+- **Body:** Send one corpus. We'll run it and walk you through what we find.
+- **Form fields:** Name, Work email, Team type (Academic lab / Corporate R&D / Patent or IP team / Tech transfer / Other).
+- **Button:** *Request a run*
+
+---
+
+### S16. Footer
+
+- **Left:** the wordmark and the line *Invention discovery for research teams. Evidence first.*
+- **Link columns:**
+  - Product: How it works, Engines, Evidence, Pricing
+  - Company: Agencies, Trust, FAQ, Contact, **Investors** (`{{INVESTOR_LINK}}`)
+  - Sources: USPTO, EPO, WIPO, arXiv, Crossref, GitHub
+- **Legal:** Cortexa is not a law firm and does not provide legal advice.
+
+---
+
+## 5. Placeholder registry
+
+| Key | Meaning | Section | Safe to show on the public page? |
+|---|---|---|---|
+| `{{TEAMS_COUNT}}` | Research teams using Cortexa | S2 | Yes |
+| `{{DOCS_ANALYSED}}` | Total documents processed | S2 | Yes |
+| `{{MARKET_SIGNAL}}` | Sourced stat on unassessed research IP | S4 | Yes, with citation |
+| `{{TAM}}` | Addressable market | S4 | Yes |
+| `{{QUALITY_METRIC}}` | Agreement with expert review | S5 | Yes, if methodology is linked |
+| `{{SEED_ATTACH}}` | Share of paid teams using Seed | S6 | Probably |
+| `{{CALIBRATION}}` | Score calibration figure | S7 | Optional |
+| `{{EVIDENCE_RECORDS}}` | Linked evidence records to date | S8 | Yes |
+| `{{DESIGN_PARTNERS}}` | Design partners or LOIs | S10 | Yes |
+| `{{AGENCY_ACCOUNTS}}` | Agencies onboarded | S11 | Yes |
+| `{{SECURITY_CERT}}` | Compliance status | S13 | Yes |
+| `{{INVESTOR_LINK}}` | Investor page or data room | S16 | Link only |
+| `{{ARR}}`, `{{NRR}}`, `{{GROSS_MARGIN}}`, `{{BURN}}` | Financials | Investor page | **No**, keep them off the public page |
+
+---
+
+## 6. Open decisions for the next round
+
+1. **Voice:** calm and scholarly (current draft), or sharper and more startup?
+2. **Hero headline:** keep "Your research has more to say," or explore alternatives?
+3. **Callout visibility:** should callouts always be visible, or appear on hover or tap on desktop?
+4. **S9 opportunity map:** keep it as its own section, or fold it into S8?
+5. **Wordmark and pixel mark:** does a logo exist, or do we design one?
+6. **Illustrations:** will they be drawn by an illustrator, generated, or built as SVG in code? This changes how detailed the drawing briefs need to be.
+
+---
+
+## 7. What we cut from the HTML
+
+- The 8-step interactive product simulator. It is replaced by S5 and S9.
+- The long agency feature list. Six features become three points.
+- The duplicate "Two ways to read" and "Engines" sections, merged into S6.
+- The "when to reach for which" block, folded into one line per engine.
+- The dark teal and amber theme.

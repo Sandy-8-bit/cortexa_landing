@@ -14,7 +14,7 @@ export function PipelineSection() {
   return (
     <Section id="how-it-works">
       <SectionHeading label="02 / HOW IT WORKS" title="Your research. A clear path forward." description="From the work you already have to the ideas worth exploring. Here’s how it happens." />
-      <div className={styles.overview}><span>RESEARCH IN</span><span className={styles.overviewLine} aria-hidden="true" /><span>FOUR SIMPLE STEPS</span><span className={styles.overviewLine} aria-hidden="true" /><span>DIRECTION OUT <ArrowUpRight size={15} aria-hidden="true" /></span></div>
+      {/* <div className={styles.overview}><span className={styles.overviewLine} aria-hidden="true" /><span>FOUR SIMPLE STEPS <ArrowUpRight size={15} aria-hidden="true" /></span></div> */}
       <ol className={styles.flow}>
         {steps.map((step, i) => (
           <li className={styles.step} id={`pass-${i}`} key={step.name}>
