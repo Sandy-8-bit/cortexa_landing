@@ -4,7 +4,7 @@ import { navigation, companyNavigation } from '@/data/navigation';
 export function SiteFooter() {
   return (
     <footer className="site-footer pt-[88px]">
-      <div className="page-container w-auto max-w-[1800px] px-[var(--cx-page-padding)] mx-auto">
+      <div className="page-container w-auto px-[var(--cx-page-padding)] mx-auto">
         {/* <div className="footer-statement">
           <p>
             Evidence first,

@@ -50,7 +50,7 @@ export function SiteHeader() {
       className="site-header sticky top-0 z-[40] [border-bottom:1px_solid_var(--line)]"
       ref={header}
     >
-      <div className="page-container header-inner w-auto max-w-[1800px] px-[var(--cx-page-padding)] mx-auto relative h-[72px] flex items-center justify-between">
+      <div className="page-container header-inner w-auto px-[var(--cx-page-padding)] mx-auto relative h-[72px] flex items-center justify-between">
         <Link
           className="header-brand absolute left-[50%] top-[50%] z-[1]"
           href="/"
