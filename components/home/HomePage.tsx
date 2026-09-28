@@ -1,4 +1,6 @@
 import { Button, Section, SectionHeading, FeatureGrid, FinalCta } from '@/components/ui/Primitives';
+import { InputOutputStrip } from './InputOutputStrip';
+import { DrawingSheet } from '@/components/visuals/DrawingSheet';
 import { ResearchSection } from './ResearchSection';
 import { TrustStrip } from './TrustStrip';
 import { DemoVideo } from './DemoVideo';
@@ -12,6 +14,7 @@ export function HomePage() {
   return (
     <>
       <HeroSection />
+      <InputOutputStrip />
       <ResearchSection />
       <TrustStrip />
       <DemoVideo />
@@ -19,15 +22,18 @@ export function HomePage() {
       <Section className="alternate">
         <SectionHeading
           label="03 / TWO ENGINES. ONE CORPUS."
-          title="Two ways to read the same work."
+          title="Look at what you've built. Then at what comes next."
           description="Harvest looks backward at what you've already built. Seed looks forward at what it could become."
         />
+        <div className="engine-drawing">
+          <DrawingSheet kind="seed" />
+        </div>
         <EnginePanels />
       </Section>
       <Section>
         <SectionHeading
           label="04 / EVIDENCE, NOT GUESSWORK"
-          title="A number isn't the whole story."
+          title="A score you can argue with."
           description="Every axis carries its own evidence, and every piece of evidence points back to a source you can open."
         />
         <Verdict />
@@ -37,12 +43,14 @@ export function HomePage() {
           </Button>
         </div>
       </Section>
-      <Section className="alternate">
+      <Section>
         <SectionHeading
           label="05 / FROM RESEARCH TO DIRECTION"
-          title="Meet your opportunity map."
+          title="See every opportunity at once."
         />
-        <div className="sample-caption technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium mb-[22px]">SAMPLE CORPUS · MATERIALS SCIENCE LAB</div>
+        <div className="sample-caption technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium mb-[22px]">
+          SAMPLE CORPUS · MATERIALS SCIENCE LAB
+        </div>
         <OpportunityMap />
       </Section>
       <Section>
@@ -51,7 +59,6 @@ export function HomePage() {
           title="Built for people who turn research into what's next."
         />
         <FeatureGrid items={personas} />
-
       </Section>
       <FinalCta />
     </>

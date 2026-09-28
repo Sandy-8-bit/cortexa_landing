@@ -1,4 +1,5 @@
 import { axes } from '@/data/candidates';
+import { ScorePortico } from './ScorePortico';
 export function Verdict({ radar = false }: { radar?: boolean }) {
   return (
     <div className="verdict-grid grid [grid-template-columns:1fr_1fr] gap-[10vw] items-center">
@@ -7,11 +8,10 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
           <Radar />
         ) : (
           <>
-            <span className="giant-score text-[clamp(160px,_21vw,_290px)] tracking-[-0.09em] leading-[1]">
-              <span data-counter>87</span><small className="text-3xl tracking-normal">/100</small>
-            </span>
+            <ScorePortico />
             <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
-              <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> VERDICT · HIGH PATENTABILITY
+              <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" />{' '}
+              VERDICT · HIGH PATENTABILITY
             </span>
           </>
         )}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { FlaskConical, ScanSearch, FolderLock, Building2 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { DrawingSheet, drawingForPage } from '@/components/visuals/DrawingSheet';
 
 export function PageContainer({
   children,
@@ -9,7 +10,7 @@ export function PageContainer({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`page-container w-auto max-w-[1800px] px-[var(--cx-page-padding)] mx-auto ${className}`}>{children}</div>;
+  return <div className={`page-container ${className}`}>{children}</div>;
 }
 export function Section({
   children,
@@ -26,8 +27,16 @@ export function Section({
     </section>
   );
 }
+function captionCase(value: string) {
+  const clean = value.replace(/^\d+\s*\/\s*/, '').trim();
+  return clean.charAt(0).toUpperCase() + clean.slice(1).toLowerCase();
+}
 export function TechnicalLabel({ children }: { children: ReactNode }) {
-  return <p className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">{children}</p>;
+  return (
+    <p className="technical-label">
+      {typeof children === 'string' ? captionCase(children) : children}
+    </p>
+  );
 }
 export function Button({
   children,
@@ -43,9 +52,8 @@ export function Button({
   size?: 'sm';
 }) {
   return (
-    <Link href={href} className={`button min-h-[60px] inline-flex items-center justify-between gap-[35px] [padding:18px_26px] [border:1px_solid_var(--ink)] rounded-none text-[14px] font-medium leading-[1.4] ${variant} ${size === 'sm' ? 'small' : ''} ${className}`}>
+    <Link href={href} className={`button ${variant} ${size === 'sm' ? 'small' : ''} ${className}`}>
       {children}
-      <ArrowUpRight size={16} aria-hidden="true" />
     </Link>
   );
 }
@@ -61,19 +69,23 @@ export function PageIntro({
   children?: ReactNode;
 }) {
   return (
-    <section className="page-intro grid-texture [padding-block:90px_96px] [border-bottom:1px_solid_var(--line)]">
+    <section className="page-intro drawing-paper">
       <PageContainer>
-        <TechnicalLabel>
-          <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" />
-          {label}
-        </TechnicalLabel>
-        <h1 data-reveal>{title}</h1>
-        {description && (
-          <p className="intro-description text-[19px] max-w-[740px] mt-[10px]" data-reveal>
-            {description}
-          </p>
-        )}
-        {children && <div className="actions flex items-center flex-wrap gap-[16px] mt-[36px]">{children}</div>}
+        <div className="sheet-registration">
+          <span>Cortexa / {label}</span>
+          <span>Invention discovery</span>
+        </div>
+        <div className="intro-sheet">
+          <div className="intro-copy">
+            <h1>{title}</h1>
+            {description && <p className="intro-description">{description}</p>}
+            {children && <div className="actions">{children}</div>}
+          </div>
+          <figure className="intro-drawing">
+            <DrawingSheet kind={drawingForPage(label)} />
+            <figcaption className="figure-caption">A study in {label.toLowerCase()}.</figcaption>
+          </figure>
+        </div>
       </PageContainer>
     </section>
   );
@@ -87,55 +99,60 @@ export function SectionHeading({
   title: string;
   description?: string;
 }) {
+  const number = label?.match(/^(\d+)\s*\//)?.[1];
   return (
-<div
-  className="section-heading  gap-x-[28px] gap-y-[28px] mb-[64px]"
-  data-reveal
->
-  {label && <TechnicalLabel>{label}</TechnicalLabel>}
-
-<div className="flex w-full flex-col gap-3">
-
-    <h2 className="col-span-8">{title}</h2>
-
-  {description && (
-    <p className="col-span-4 col-start-1">{description}</p>
-  )}
-</div>
-</div>
+    <div className="section-heading">
+      <h2>{title}</h2>
+      {description && <p>{description}</p>}
+      {label && (
+        <p className="figure-caption">
+          {number ? `Fig. ${number} — ` : ''}
+          {captionCase(label)}
+        </p>
+      )}
+    </div>
   );
 }
 export function FeatureGrid({ items }: { items: { title: string; description: string }[] }) {
+  const icons = [FlaskConical, ScanSearch, FolderLock, Building2];
   return (
-    <div className={`feature-grid grid [grid-template-columns:1.2fr_1fr_1fr] gap-[14px] ${items.length === 4 ? 'feature-grid-four' : ''}`}>
-      {items.map((item, index) => (
-        <article className="feature-card flex flex-col min-h-[380px] min-w-0 p-[32px] bg-(--surface) [border:1px_solid_var(--line)]" key={item.title} data-reveal>
-          <span className="feature-number text-[11px] mb-[58px]">{String(index + 1).padStart(2, '0')} /</span>
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-        </article>
-      ))}
+    <div className={`feature-grid ${items.length === 4 ? 'feature-grid-four' : ''}`}>
+      {items.map((item, index) => {
+        const Icon = icons[index % icons.length];
+        return (
+          <article className="feature-card" key={item.title}>
+            <div className="feature-drawing" aria-hidden="true">
+              <Icon size={64} strokeWidth={0.8} />
+              <i />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        );
+      })}
     </div>
   );
 }
 export function FinalCta({
-  title = 'Your next patent may already be in your research.',
-  label = 'Book a demo',
+  title = 'Your next patent may already be written.',
+  label = 'Run a corpus',
 }: {
   title?: string;
   label?: string;
 }) {
   return (
-    <Section className="final-cta grid-texture">
-      <TechnicalLabel>THE NEXT CHAPTER</TechnicalLabel>
-      <h2 data-reveal>{title}</h2>
-      <div className="actions flex items-center flex-wrap gap-[16px] mt-[36px]">
-        <Button href="/contact">{label}</Button>
-        <Button href="/how-it-works" variant="ghost">
-          See how it works
-        </Button>
+    <Section className="final-cta">
+      <div className="closing-drawing">
+        <DrawingSheet />
       </div>
-      <p className="mt-5 text-sm text-(--muted)">30-minute walkthrough on a sample corpus. No upload needed.</p>
+      <div className="closing-title-block">
+        <div>
+          <h2>{title}</h2>
+          <p>Send one corpus. We’ll run it and walk you through what we find.</p>
+        </div>
+        <Button href="/contact">{label}</Button>
+      </div>
+      <p className="figure-caption">The next chapter starts with the work you already have.</p>
     </Section>
   );
 }

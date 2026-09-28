@@ -6,14 +6,14 @@ export default function Image() {
   return new ImageResponse(
     <div
       style={{
-        background: '#050505',
-        color: '#f5f5f3',
+        background: '#ffffff',
+        color: '#12162b',
         width: '100%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         padding: '64px 72px',
-        fontFamily: 'sans-serif',
+        fontFamily: 'serif',
       }}
     >
       <div
@@ -21,24 +21,24 @@ export default function Image() {
           display: 'flex',
           justifyContent: 'space-between',
           fontSize: 20,
-          borderBottom: '1px solid #444',
+          borderBottom: '1px solid #e3e6ee',
           paddingBottom: 24,
         }}
       >
         <span>Cortexa</span>
-        <span style={{ fontSize: 13, color: '#aaa' }}>INVENTION DISCOVERY, EVIDENCE FIRST</span>
+        <span style={{ fontSize: 13, color: '#7d8392' }}>INVENTION DISCOVERY, EVIDENCE FIRST</span>
       </div>
-      <div style={{ height: 1, background: '#145cff', marginTop: 48, opacity: 0.7 }} />
-      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -5, marginTop: 52 }}>
+      <div style={{ height: 1, background: '#2244f0', marginTop: 48, opacity: 0.7 }} />
+      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -1, marginTop: 52 }}>
         Your research
       </div>
-      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -5 }}>has more to say.</div>
+      <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -1 }}>has more to say.</div>
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
           fontSize: 22,
-          color: '#b2b2af',
+          color: '#535c70',
           marginTop: 38,
         }}
       >

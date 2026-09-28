@@ -1,5 +1,7 @@
 # Cortexa Website --- Design System & Theme Migration
 
+> Current theme: `cortexa-landing_sabari_theme` supersedes the earlier Imaginext direction below. See `THEME.md` for the implemented design system.
+
 ## Purpose
 
 Redesign the **existing Cortexa website** so its visual language matches

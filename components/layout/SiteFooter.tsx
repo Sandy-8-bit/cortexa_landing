@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { CortexaLogo } from '@/components/branding/CortexaLogo';
 import { navigation, companyNavigation } from '@/data/navigation';
 export function SiteFooter() {
@@ -26,10 +25,14 @@ export function SiteFooter() {
               <br />
               Evidence first, always.
             </p>
-            <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">RESEARCH → POSSIBILITY</span>
+            <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+              RESEARCH → POSSIBILITY
+            </span>
           </div>
           <div>
-            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">Product</h2>
+            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+              Product
+            </h2>
             {navigation.slice(0, 4).map((item, i) => (
               <Link key={item.href} href={item.href}>
                 {['Walkthrough', 'How it works', 'Harvest & Seed', 'Evidence graph'][i]}
@@ -37,7 +40,9 @@ export function SiteFooter() {
             ))}
           </div>
           <div>
-            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">Company</h2>
+            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+              Company
+            </h2>
             {companyNavigation.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
@@ -45,7 +50,9 @@ export function SiteFooter() {
             ))}
           </div>
           <div>
-            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">Sources</h2>
+            <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
+              Sources
+            </h2>
             <p>
               USPTO · EPO · WIPO
               <br />

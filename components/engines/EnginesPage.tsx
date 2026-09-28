@@ -5,6 +5,7 @@ import {
   FeatureGrid,
   FinalCta,
 } from '@/components/ui/Primitives';
+import { DrawingSheet } from '@/components/visuals/DrawingSheet';
 import { EnginePanels } from '@/components/home/EnginePanels';
 import { engineUseCases } from '@/data/content';
 import { LatticeVisual } from '@/components/visuals/ResearchVisual';
@@ -13,6 +14,9 @@ export function EnginesPage() {
     <>
       <PageIntro label="Engines" title="Two ways to explore your innovation." />
       <Section className="first-section">
+        <div className="engine-drawing">
+          <DrawingSheet kind="seed" />
+        </div>
         <EnginePanels detailed />
       </Section>
       <Section className="alternate">

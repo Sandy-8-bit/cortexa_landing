@@ -13,15 +13,21 @@ export function ContactPage() {
       <Section className="first-section">
         <div className="contact-layout grid [grid-template-columns:1fr_1.65fr] gap-[8vw] [align-items:start]">
           <aside>
-            <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">FROM YOUR WORK, TO WHAT’S NEXT</span>
+            <span className="technical-label">From your work, to what’s next</span>
             <h2>Start with what you already have.</h2>
             <p>You don&apos;t need a patent strategy to begin. Just the research.</p>
-            <Link className="contact-link flex items-center gap-[16px] min-h-[70px] [border-top:1px_solid_var(--line)] text-[14px]" href="/how-it-works">
+            <Link
+              className="contact-link flex items-center gap-[16px] min-h-[70px] [border-top:1px_solid_var(--line)] text-[14px]"
+              href="/how-it-works"
+            >
               <FileText size={18} />
               How it works
               <ArrowUpRight size={16} />
             </Link>
-            <Link className="contact-link flex items-center gap-[16px] min-h-[70px] [border-top:1px_solid_var(--line)] text-[14px]" href="/trust">
+            <Link
+              className="contact-link flex items-center gap-[16px] min-h-[70px] [border-top:1px_solid_var(--line)] text-[14px]"
+              href="/trust"
+            >
               <ShieldCheck size={18} />
               Data handling notes
               <ArrowUpRight size={16} />

@@ -12,6 +12,12 @@ export function SiteHeader() {
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
+    const update = () => header.current?.classList.toggle('is-scrolled', window.scrollY > 24);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+  useEffect(() => {
     if (!open) return;
     const keydown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -40,7 +46,10 @@ export function SiteHeader() {
       </Link>
     ));
   return (
-    <header className="site-header sticky top-0 z-[40] [border-bottom:1px_solid_var(--line)]" ref={header}>
+    <header
+      className="site-header sticky top-0 z-[40] [border-bottom:1px_solid_var(--line)]"
+      ref={header}
+    >
       <div className="page-container header-inner w-auto max-w-[1800px] px-[var(--cx-page-padding)] mx-auto relative h-[72px] flex items-center justify-between">
         <Link
           className="header-brand absolute left-[50%] top-[50%] z-[1]"
@@ -50,13 +59,23 @@ export function SiteHeader() {
         >
           <CortexaLogo />
         </Link>
-        <nav className="desktop-nav flex justify-between w-full items-center" aria-label="Main navigation">
-          <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">{links(0, 3)}</div>
+        <nav
+          className="desktop-nav flex justify-between w-full items-center"
+          aria-label="Main navigation"
+        >
           <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
-            {links(3, 6)}
-            <Link className="nav-cta ml-[8px] pl-[22px] [border-left:1px_solid_var(--line)]" href="/contact">
-              Book a demo
-              <ArrowUpRight size={15} aria-hidden="true" />
+            {links(0, 4)}
+          </div>
+          <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
+            {links(5, 6)}
+            <Link href="/trust" aria-current={pathname === '/trust' ? 'page' : undefined}>
+              Trust
+            </Link>
+            <Link
+              className="nav-cta ml-[8px] pl-[22px] [border-left:1px_solid_var(--line)]"
+              href="/contact"
+            >
+              Run a corpus
             </Link>
           </div>
         </nav>
