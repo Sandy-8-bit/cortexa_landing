@@ -2,9 +2,9 @@
 
 The active visual reference is `cortexa-landing_sabari_theme`. It applies to all ten routes and the not-found page.
 
-- Pure white drawing sheets, 24px dot grids, graphite line art, cyanotype accents, and navy blueprint sections.
-- Newsreader for headings, body copy, and controls; IBM Plex Mono for annotations and values. Both are self-hosted through `next/font`.
-- A fluid, full-width content field with responsive side padding, thin rules, square tiles, blue primary buttons, and underlined secondary actions.
+- One bordered 1360px sheet on a dotted drafting table, with registration crosses where section rules meet the frame. White sections, near-black (#0c0c0e) contrast sections, one blue (#1a4bff).
+- Inter for all text (nothing under 13px); IBM Plex Mono only for the `[ 02 ]` numbers in section index rows. Both are self-hosted through `next/font`.
+- Isometric line drawings of research sheets and files, blue pixel cubes for inventions, flat pixel bar charts for timelines and scores. No architectural drawings, few icons.
 - Graphite represents existing research. Solid blue pixels represent discovered inventions; outlined periwinkle pixels represent Seed opportunities.
 - The hero scan runs once. Other content stays static until interaction. Reduced motion immediately presents the completed drawing.
 

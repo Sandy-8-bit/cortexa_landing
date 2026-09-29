@@ -1,12 +1,12 @@
-import { IBM_Plex_Mono, Newsreader } from 'next/font/google';
+import { IBM_Plex_Mono, Inter } from 'next/font/google';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageAnimations } from '@/components/animations/PageAnimations';
 import { pageMetadata } from '@/lib/metadata';
 import './globals.css';
 import './sabari-theme.css';
-const newsreader = Newsreader({
-  variable: '--font-newsreader',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -23,7 +23,7 @@ export const metadata = pageMetadata(
 );
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
       <body>
         <a
           className="skip-link fixed top-[-100px] left-[20px] bg-(--cx-white) text-(--cx-black) z-[100] p-[16px]"

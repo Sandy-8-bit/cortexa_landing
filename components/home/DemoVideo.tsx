@@ -25,7 +25,7 @@ export function DemoVideo() {
           />
         ) : (
           <button
-            className="video-preview drawing-paper"
+            className="video-preview"
             onClick={() => setPlaying(true)}
             aria-label="Play Cortexa product walkthrough"
           >
@@ -33,7 +33,6 @@ export function DemoVideo() {
             <span className="video-play">
               <Play size={18} fill="currentColor" aria-hidden="true" /> Watch the walkthrough
             </span>
-            <span className="figure-caption">From source material to a defensible next step.</span>
           </button>
         )}
       </div>

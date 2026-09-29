@@ -1,4 +1,3 @@
-﻿import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { Section, SectionHeading } from '@/components/ui/Primitives';
 import { ProcessIllustration } from '@/components/how/ProcessIllustration';
@@ -7,27 +6,27 @@ import styles from './PipelineSection.module.css';
 const steps = [
   {
     name: 'Read',
-    action: 'YOU ADD',
+    action: 'You add',
     description: 'Start with your papers, technical notes, or code. No special formatting needed.',
     output: 'Your research, in one place',
   },
   {
     name: 'Find',
-    action: 'CORTEXA FINDS',
+    action: 'Cortexa finds',
     description:
       'Cortexa identifies potential inventions and links each idea to its original source.',
     output: 'Ideas you can trace back',
   },
   {
     name: 'Check',
-    action: 'CORTEXA COMPARES',
+    action: 'Cortexa compares',
     description:
       'Each idea is compared with existing patents, published research, and public code.',
     output: 'Matches and differences',
   },
   {
     name: 'Rank',
-    action: 'YOU DECIDE',
+    action: 'You decide',
     description:
       'Review the strengths and gaps of each idea, then choose what deserves a closer look.',
     output: 'A clear starting point',
@@ -41,13 +40,12 @@ export function PipelineSection() {
         title="Four passes. Each one asks a harder question."
         description="From the work you already have to the ideas worth exploring. Here’s how it happens."
       />
-      {/* <div className={styles.overview}><span className={styles.overviewLine} aria-hidden="true" /><span>FOUR SIMPLE STEPS <ArrowUpRight size={15} aria-hidden="true" /></span></div> */}
       <ol className={styles.flow}>
         {steps.map((step, i) => (
           <li className={styles.step} id={`pass-${i}`} key={step.name}>
             <div className={styles.stepTop}>
-              <span className={styles.number}>0{i + 1}</span>
               <span>{step.action}</span>
+              <span className={styles.number}>0{i + 1}</span>
             </div>
             <div className={styles.illustration}>
               <ProcessIllustration stage={i} />
@@ -57,22 +55,15 @@ export function PipelineSection() {
               <p>{step.description}</p>
             </div>
             <div className={styles.output}>
-              <ArrowDown size={14} aria-hidden="true" />
-              <span>{step.output}</span>
+              <span>Result</span>
+              {step.output}
             </div>
-            {i < steps.length - 1 && (
-              <span className={styles.connector} aria-hidden="true">
-                <ArrowRight size={17} />
-              </span>
-            )}
           </li>
         ))}
       </ol>
       <div className={styles.footer}>
         <p>One connected journey. Every idea stays linked to its evidence.</p>
-        <Link href="/how-it-works">
-          Explore the full process <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
+        <Link href="/how-it-works">Explore the full process</Link>
       </div>
     </Section>
   );

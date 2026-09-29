@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FlaskConical, ScanSearch, FolderLock, Building2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { DrawingSheet, drawingForPage } from '@/components/visuals/DrawingSheet';
 
@@ -29,7 +28,9 @@ export function Section({
 }
 function captionCase(value: string) {
   const clean = value.replace(/^\d+\s*\/\s*/, '').trim();
-  return clean.charAt(0).toUpperCase() + clean.slice(1).toLowerCase();
+  return clean
+    .toLowerCase()
+    .replace(/(^|[.?!]\s+)([a-z])/g, (_, start: string, letter: string) => start + letter.toUpperCase());
 }
 export function TechnicalLabel({ children }: { children: ReactNode }) {
   return (
@@ -71,10 +72,7 @@ export function PageIntro({
   return (
     <section className="page-intro drawing-paper">
       <PageContainer>
-        <div className="sheet-registration">
-          <span>Cortexa / {label}</span>
-          <span>Invention discovery</span>
-        </div>
+        <SectionIndex text={label} />
         <div className="intro-sheet">
           <div className="intro-copy">
             <h1>{title}</h1>
@@ -83,11 +81,21 @@ export function PageIntro({
           </div>
           <figure className="intro-drawing">
             <DrawingSheet kind={drawingForPage(label)} />
-            <figcaption className="figure-caption">A study in {label.toLowerCase()}.</figcaption>
           </figure>
         </div>
       </PageContainer>
     </section>
+  );
+}
+/* "02 / HOW IT WORKS" renders as a numbered rule: [ 02 ] ——— How it works */
+export function SectionIndex({ text }: { text: string }) {
+  const number = text.match(/^(\d+)\s*\//)?.[1];
+  return (
+    <div className="section-index">
+      {number && <span className="section-index-number">[ {number} ]</span>}
+      <span className="section-index-rule" aria-hidden="true" />
+      <span>{captionCase(text)}</span>
+    </div>
   );
 }
 export function SectionHeading({
@@ -99,37 +107,26 @@ export function SectionHeading({
   title: string;
   description?: string;
 }) {
-  const number = label?.match(/^(\d+)\s*\//)?.[1];
   return (
     <div className="section-heading">
-      <h2>{title}</h2>
-      {description && <p>{description}</p>}
-      {label && (
-        <p className="figure-caption">
-          {number ? `Fig. ${number} — ` : ''}
-          {captionCase(label)}
-        </p>
-      )}
+      {label && <SectionIndex text={label} />}
+      <div className="section-heading-body">
+        <h2>{title}</h2>
+        {description && <p>{description}</p>}
+      </div>
     </div>
   );
 }
 export function FeatureGrid({ items }: { items: { title: string; description: string }[] }) {
-  const icons = [FlaskConical, ScanSearch, FolderLock, Building2];
   return (
     <div className={`feature-grid ${items.length === 4 ? 'feature-grid-four' : ''}`}>
-      {items.map((item, index) => {
-        const Icon = icons[index % icons.length];
-        return (
-          <article className="feature-card" key={item.title}>
-            <div className="feature-drawing" aria-hidden="true">
-              <Icon size={64} strokeWidth={0.8} />
-              <i />
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        );
-      })}
+      {items.map((item, index) => (
+        <article className="feature-card" key={item.title}>
+          <span className="feature-index">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))}
     </div>
   );
 }
@@ -152,7 +149,6 @@ export function FinalCta({
         </div>
         <Button href="/contact">{label}</Button>
       </div>
-      <p className="figure-caption">The next chapter starts with the work you already have.</p>
     </Section>
   );
 }

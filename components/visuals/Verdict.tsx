@@ -1,5 +1,5 @@
 import { axes } from '@/data/candidates';
-import { ScorePortico } from './ScorePortico';
+import { ScoreColumns } from './ScoreColumns';
 export function Verdict({ radar = false }: { radar?: boolean }) {
   return (
     <div className="verdict-grid grid [grid-template-columns:1fr_1fr] gap-[10vw] items-center">
@@ -8,11 +8,8 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
           <Radar />
         ) : (
           <>
-            <ScorePortico />
-            <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
-              <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" />{' '}
-              VERDICT · HIGH PATENTABILITY
-            </span>
+            <ScoreColumns />
+            <span className="verdict-tag">Verdict: high patentability</span>
           </>
         )}
         <p>Scores are calibrated estimates, not legal opinions.</p>

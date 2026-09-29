@@ -26,7 +26,7 @@ export function EnginePanels({ detailed = false }: { detailed?: boolean }) {
         >
           <div className="engine-mark" aria-hidden="true" />
           <div className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
-            ENGINE 0{index + 1}
+            Engine 0{index + 1}
             <span>{engine.name}</span>
           </div>
           <h3>{detailed ? engine.title : engine.question}</h3>

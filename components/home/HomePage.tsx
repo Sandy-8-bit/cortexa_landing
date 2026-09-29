@@ -48,9 +48,7 @@ export function HomePage() {
           label="05 / FROM RESEARCH TO DIRECTION"
           title="See every opportunity at once."
         />
-        <div className="sample-caption technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium mb-[22px]">
-          SAMPLE CORPUS · MATERIALS SCIENCE LAB
-        </div>
+        <p className="sample-caption">Sample corpus: materials science lab</p>
         <OpportunityMap />
       </Section>
       <Section>
