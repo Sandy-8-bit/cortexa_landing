@@ -400,7 +400,7 @@ main > *::after,
 
 /* ---------- Hero ---------- */
 .hero {
-  padding-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(28px, 6vw, 28px);
   padding-bottom: 40px;
 }
 .hero-title-block {
@@ -1277,9 +1277,7 @@ tbody th > span {
   .first-section {
     padding-top: 36px;
   }
-  .hero {
-    padding-top: 40px;
-  }
+
   .hero h1 {
     font-size: clamp(42px, 11vw, 64px);
   }

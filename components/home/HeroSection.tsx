@@ -6,7 +6,7 @@ export function HeroSection() {
       <PageContainer>
         <div className="hero-title-block">
           <div>
-            <p className="hero-tag">Invention discovery</p>
+            {/* <p className="hero-tag">Invention discovery</p> */}
             <h1>
               <span className="hero-line">Your research</span>
               <span className="hero-line">

@@ -85,14 +85,14 @@ export function ProductDemo() {
     if (step > 0) heading.current?.focus({ preventScroll: true });
   }, [step]);
   return (
-    <div className="product-demo panel bg-(--canvas) overflow-hidden">
+    <div className="product-demo panel bg-(--canvas) overflow-clip">
       <div className="demo-header flex items-center justify-between gap-[16px] [border-bottom:1px_solid_var(--line)] [padding:24px_32px] bg-(--surface)">
         <span className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
           <span className="status-dot inline-block w-[5px] h-[5px] mr-[8px] [background:currentColor] rounded-[50%] align-middle" /> INTERACTIVE WALKTHROUGH
         </span>
         <span className="demo-note text-[13px] leading-[1.6] text-(--muted)">Sample data · No files uploaded</span>
       </div>
-      <div className="demo-stepper grid grid-cols-8 [border-bottom:1px_solid_var(--line)]" aria-label="Demo steps">
+      <div className="demo-stepper sticky top-[65px] z-20 grid grid-cols-8 bg-(--canvas) [border-bottom:1px_solid_var(--line)] max-lg:top-[69px]" aria-label="Demo steps">
         {demoSteps.map((name, i) => (
           <button
             key={name}
