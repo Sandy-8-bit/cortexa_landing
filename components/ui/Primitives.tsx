@@ -63,11 +63,13 @@ export function PageIntro({
   title,
   description,
   children,
+  illustration,
 }: {
   label: string;
   title: string;
   description?: string;
   children?: ReactNode;
+  illustration?: ReactNode;
 }) {
   return (
     <section className="page-intro drawing-paper">
@@ -80,7 +82,7 @@ export function PageIntro({
             {children && <div className="actions">{children}</div>}
           </div>
           <figure className="intro-drawing">
-            <DrawingSheet kind={drawingForPage(label)} />
+            {illustration ?? <DrawingSheet kind={drawingForPage(label)} />}
           </figure>
         </div>
       </PageContainer>
