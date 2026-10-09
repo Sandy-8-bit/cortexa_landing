@@ -7,7 +7,7 @@ export function ResearchSection() {
         <DrawingSheet kind="lab" />
       </figure>
       <div className="drawing-title-block">
-        <h2>Every lab is sitting on inventions. None of them are labelled.</h2>
+        <h2>Not every developer is an inventor. But every lab holds inventions waiting to be discovered.</h2>
         <div>
           <p>
             Papers, notebooks, grant reports and code all hold patentable ideas. Nobody has time to

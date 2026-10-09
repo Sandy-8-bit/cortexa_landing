@@ -16,8 +16,7 @@ export function HeroSection() {
           </div>
           <div className="hero-summary">
             <p>
-              Cortexa finds the inventions hidden in your papers, code and lab notes, and shows the
-              evidence behind each one.
+              Cortexa uncovers hidden innovations in your research, code, and lab notes, with clear evidence to support every discovery
             </p>
             <div className="actions">
               <Button href="/contact">Run a corpus</Button>

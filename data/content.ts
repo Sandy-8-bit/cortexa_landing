@@ -7,7 +7,7 @@ export const personas = [
   {
     title: 'Reviewers',
     description:
-      'See the evidence behind every opportunity, so a decision to drop an idea is as defensible as a decision to file.',
+      'Explore evidence behind  opportunity, so deciding to drop an idea is as defensible as deciding to file.',
   },
   {
     title: 'Patent teams',
@@ -16,7 +16,7 @@ export const personas = [
   },
   {
     title: 'IP agencies',
-    description: 'Screen client research at scale and bring evidence-backed filing recommendations to every client meeting.',
+    description: 'Screen client research at scale and bring evidence-backed filing recommendations to client meetings.',
   },
 ];
 export const engines = [
@@ -55,17 +55,17 @@ export const engineUseCases = [
   {
     title: 'Use Harvest',
     description:
-      "before a review cycle, after a grant closes, or when onboarding a new portfolio you've inherited.",
+      "Before a review cycle, after a grant closes, or when onboarding a new portfolio you've inherited.",
   },
   {
     title: 'Use Seed',
     description:
-      "during roadmap planning, when entering a new market, or when a competitor's filing changes the landscape.",
+      "During roadmap planning, entering new markets, or when a competitor's filing changes the landscape.",
   },
   {
     title: 'Use both',
     description:
-      'on the same corpus — Harvest sets the floor, Seed sets the direction, and the lattice ties them together.',
+      'On the same corpus Harvest sets the floor, Seed sets the direction, and the lattice ties them together.',
   },
 ];
 export const contactOptions = [
