@@ -23,7 +23,7 @@ export function HomePage() {
         <SectionHeading
           label="03 / TWO ENGINES. ONE CORPUS."
           title="Look at what you've built. Then at what comes next."
-          description="Harvest looks backward at what you've already built. Seed looks forward at what it could become."
+          // description="Harvest looks backward at what you've already built. Seed looks forward at what it could become."
         />
         <div className="engine-drawing">
           <DrawingSheet kind="seed" />

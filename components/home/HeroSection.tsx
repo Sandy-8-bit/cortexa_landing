@@ -20,7 +20,7 @@ export function HeroSection() {
             </p>
             <div className="actions">
               <Button href="/contact">Run a corpus</Button>
-              <Button href="/how-it-works" variant="ghost">
+              <Button href="/product" variant="ghost">
                 See how it works
               </Button>
             </div>
