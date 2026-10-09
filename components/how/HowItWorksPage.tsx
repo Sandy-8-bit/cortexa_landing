@@ -2,11 +2,13 @@
 import { PageIntro, Section, TechnicalLabel, FinalCta } from '@/components/ui/Primitives';
 import { ProcessIllustration } from './ProcessIllustration';
 import { HowScrollAnimations } from './HowScrollAnimations';
+import { ResearchDirectionIllustration } from '@/components/visuals/IntroIllustrations';
 export function HowItWorksPage() {
   return (
     <>
       <PageIntro
         label="How it works"
+        illustration={<ResearchDirectionIllustration />}
         title="From your research to your next move."
         description="Follow six steps from the files you already have to a prioritised set of invention opportunities."
       />

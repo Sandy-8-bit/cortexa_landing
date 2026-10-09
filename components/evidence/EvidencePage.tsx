@@ -1,10 +1,12 @@
 import { PageIntro, Section, FinalCta } from '@/components/ui/Primitives';
 import { EvidenceGraph } from './EvidenceGraph';
+import { EvidenceIllustration } from './EvidenceIllustration';
 export function EvidencePage() {
   return (
     <>
       <PageIntro
         label="Evidence"
+        illustration={<EvidenceIllustration />}
         title="Don't just get an answer. Trace it."
         description="Select any node to open the record behind it."
       />

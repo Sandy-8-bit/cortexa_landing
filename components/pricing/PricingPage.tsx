@@ -1,11 +1,13 @@
 import { Check } from 'lucide-react';
 import { pricing } from '@/data/pricing';
+import { CorpusPricingIllustration } from '@/components/visuals/IntroIllustrations';
 import { PageIntro, Section, SectionHeading, Button } from '@/components/ui/Primitives';
 export function PricingPage() {
   return (
     <>
       <PageIntro
         label="Pricing"
+        illustration={<CorpusPricingIllustration />}
         title="Priced per corpus, not per seat."
         description="Reviewers, attorneys, and PIs all need to see the same evidence. Charging them each to look at it made no sense to us."
       />

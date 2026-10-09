@@ -19,7 +19,7 @@ export function EnginesPage() {
         </div>
         <EnginePanels detailed />
       </Section>
-      <Section className="alternate">
+      {/* <Section className="alternate">
         <div className="split-layout grid grid-cols-12 gap-[48px] items-center">
           <SectionHeading
             label="CONNECTED STRATEGY"
@@ -28,7 +28,7 @@ export function EnginesPage() {
           />
           <LatticeVisual />
         </div>
-      </Section>
+      </Section> */}
       <Section>
         <SectionHeading title="When to reach for which" />
         <FeatureGrid items={engineUseCases} />
