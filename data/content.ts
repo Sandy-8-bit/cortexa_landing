@@ -7,16 +7,16 @@ export const personas = [
   {
     title: 'Reviewers',
     description:
-      'See the evidence behind every opportunity, so a decision to drop an idea is as defensible as a decision to file.',
+      'Explore evidence behind  opportunity, so deciding to drop an idea is as defensible as deciding to file.',
   },
   {
-    title: 'Patent teams',
+    title: 'Patent Consultancy',
     description:
       'Automate first-pass screening across a whole department. Spend attorney hours on strategy instead of triage.',
   },
   {
     title: 'IP agencies',
-    description: 'Screen client research at scale and bring evidence-backed filing recommendations to every client meeting.',
+    description: 'Screen client research at scale and bring evidence-backed filing recommendations to client meetings.',
   },
 ];
 export const engines = [
@@ -27,10 +27,10 @@ export const engines = [
     description:
       "Find the inventions hiding in research you've already done, understand how mature each one is, and prioritise by impact.",
     steps: [
-      'Research — papers, code, reports',
-      'Candidates — inventions identified',
-      'Evidence — prior art retrieved',
-      'Ranking — ordered by strength',
+      'Research - papers, code, reports',
+      'Candidates - inventions identified',
+      'Evidence - prior art retrieved',
+      'Ranking - ordered by strength',
     ],
     detail:
       'Maturity runs from early signal to filing-ready. Ranking weighs patentability, commercial pull, and freedom to operate. Output is a prioritised report your review board can work from.',
@@ -43,9 +43,9 @@ export const engines = [
       'Point Cortexa at your roadmap as well as your archive, and it proposes directions worth inventing into.',
     steps: [
       'Research + roadmap',
-      'Opportunity seeds — unclaimed directions',
+      'Opportunity seeds - unclaimed directions',
       'Invention lattice (a map of related filings around your idea)',
-      'Strategy — a portfolio, not a list',
+      'Strategy - a portfolio, not a list',
     ],
     detail:
       'Seeds are generated where your capabilities meet an unclaimed region of the art. The lattice shows how a core filing could extend into continuation, platform, and system claims.',
@@ -55,17 +55,17 @@ export const engineUseCases = [
   {
     title: 'Use Harvest',
     description:
-      "before a review cycle, after a grant closes, or when onboarding a new portfolio you've inherited.",
+      "Before a review cycle, after a grant closes, or when onboarding a new portfolio you've inherited.",
   },
   {
     title: 'Use Seed',
     description:
-      "during roadmap planning, when entering a new market, or when a competitor's filing changes the landscape.",
+      "During roadmap planning, entering new markets, or when a competitor's filing changes the landscape.",
   },
   {
     title: 'Use both',
     description:
-      'on the same corpus — Harvest sets the floor, Seed sets the direction, and the lattice ties them together.',
+      'On the same corpus Harvest sets the floor, Seed sets the direction, and the lattice ties them together.',
   },
 ];
 export const contactOptions = [

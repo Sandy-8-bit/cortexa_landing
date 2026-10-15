@@ -5,10 +5,10 @@ export function InputOutputStrip() {
       <PageContainer>
         <div className="io-flow">
           <p>
-            <span>Goes in</span>Papers, code, reports, notebooks
+            <span>Goes in</span>Document, Code, Designs, Notebooks, GitHub, Azure
           </p>
           <p>
-            <span>Checked against</span>USPTO, EPO, WIPO, arXiv, Crossref, GitHub
+            <span>Checked against</span>USPTO, WIPO, EPO and Google Scholar
           </p>
           <p>
             <span>Comes out</span>Ranked inventions with prior art

@@ -1,0 +1,24 @@
+.visual {
+  width: min(100%, 440px);
+  margin-inline: auto;
+}
+
+.visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .025em;
+}
+
+@media (max-width: 700px) {
+  .visual {
+    max-width: 320px;
+  }
+}

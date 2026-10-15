@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { CortexaLogo } from '@/components/branding/CortexaLogo';
-import { navigation, companyNavigation } from '@/data/navigation';
 export function SiteFooter() {
   return (
     <footer className="site-footer pt-[88px]">
@@ -33,23 +32,17 @@ export function SiteFooter() {
             <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
               Product
             </h2>
-            {navigation.slice(0, 4).map((item, i) => (
-              <Link key={item.href} href={item.href}>
-                {['Walkthrough', 'How it works', 'Harvest & Seed', 'Evidence graph'][i]}
-              </Link>
-            ))}
+            <Link href="/product">Product</Link>
+            <Link href="/pricing">Pricing</Link>
           </div>
           <div>
             <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
               Company
             </h2>
-            {companyNavigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
+            <Link href="/contact">Contact</Link>
+            <Link href="/faq">FAQ</Link>
           </div>
-          <div>
+          {/* <div>
             <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
               Sources
             </h2>
@@ -60,7 +53,7 @@ export function SiteFooter() {
               <br />
               GitHub · GitLab
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="footer-bottom flex justify-between flex-wrap gap-[20px] py-[27px] [border-top:1px_solid_var(--line)] text-[11px] text-(--muted)">
           <span>© 2026 Cortexa. Concept site.</span>
