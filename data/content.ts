@@ -10,7 +10,7 @@ export const personas = [
       'Explore evidence behind  opportunity, so deciding to drop an idea is as defensible as deciding to file.',
   },
   {
-    title: 'Patent teams',
+    title: 'Patent Consultancy',
     description:
       'Automate first-pass screening across a whole department. Spend attorney hours on strategy instead of triage.',
   },

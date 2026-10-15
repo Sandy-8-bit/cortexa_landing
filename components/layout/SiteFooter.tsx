@@ -49,7 +49,7 @@ export function SiteFooter() {
               </Link>
             ))}
           </div>
-          <div>
+          {/* <div>
             <h2 className="technical-label font-sans text-[11px] leading-[1.5] tracking-[0.055em] uppercase text-(--muted) font-medium">
               Sources
             </h2>
@@ -60,7 +60,7 @@ export function SiteFooter() {
               <br />
               GitHub · GitLab
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="footer-bottom flex justify-between flex-wrap gap-[20px] py-[27px] [border-top:1px_solid_var(--line)] text-[11px] text-(--muted)">
           <span>© 2026 Cortexa. Concept site.</span>

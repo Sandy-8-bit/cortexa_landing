@@ -44,7 +44,7 @@ export function ProcessIllustration({ stage }: { stage: number }) {
           {[
             ['Patents', 'Similar method'],
             ['Papers', 'Related research'],
-            ['Public code', 'Different approach'],
+            // ['Public code', 'Different approach'],
           ].map(([source, match]) => (
             <div className={styles.row} key={source}>
               <span>{source}</span>

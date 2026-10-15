@@ -9,8 +9,8 @@ export const navigation = [
 ];
 export const companyNavigation = [
   ...navigation.slice(4),
-  { href: '/trust', label: 'Trust & data' },
+  { href: '/Compliance', label: 'Compliance' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];
-export const routes = ['/', ...navigation.map((item) => item.href), '/trust', '/faq', '/contact'];
+export const routes = ['/', ...navigation.map((item) => item.href), '/Compliance', '/faq', '/contact'];

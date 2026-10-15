@@ -10,8 +10,8 @@ export function ResearchSection() {
         <h2>Not every developer is an inventor. But every lab holds inventions waiting to be discovered.</h2>
         <div>
           <p>
-            Papers, notebooks, grant reports and code all hold patentable ideas. Nobody has time to
-            read them that way.
+            Documents and CodeBase all hold patentable ideas. Nobody has time to
+            Identify them.
           </p>
           <Button href="/product" variant="ghost">
             Explore the sample workflow

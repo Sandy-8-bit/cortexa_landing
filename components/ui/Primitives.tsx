@@ -30,7 +30,10 @@ function captionCase(value: string) {
   const clean = value.replace(/^\d+\s*\/\s*/, '').trim();
   return clean
     .toLowerCase()
-    .replace(/(^|[.?!]\s+)([a-z])/g, (_, start: string, letter: string) => start + letter.toUpperCase());
+    .replace(
+      /(^|[.?!]\s+)([a-z])/g,
+      (_, start: string, letter: string) => start + letter.toUpperCase(),
+    );
 }
 export function TechnicalLabel({ children }: { children: ReactNode }) {
   return (
@@ -135,15 +138,15 @@ export function FeatureGrid({ items }: { items: { title: string; description: st
 export function FinalCta({
   title = 'Your next patent may already be written.',
   label = 'Run a corpus',
+  illustration,
 }: {
   title?: string;
   label?: string;
+  illustration?: ReactNode;
 }) {
   return (
     <Section className="final-cta">
-      <div className="closing-drawing">
-        <DrawingSheet />
-      </div>
+      <div className="closing-drawing">{illustration ?? <DrawingSheet />}</div>
       <div className="closing-title-block">
         <div>
           <h2>{title}</h2>
