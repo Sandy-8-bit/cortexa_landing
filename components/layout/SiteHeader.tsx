@@ -35,8 +35,8 @@ export function SiteHeader() {
       document.removeEventListener('pointerdown', outside);
     };
   }, [open]);
-  const links = (start: number, end: number) =>
-    navigation.slice(start, end).map((item) => (
+  const links = () =>
+    navigation.map((item) => (
       <Link
         key={item.href}
         href={item.href}
@@ -60,17 +60,13 @@ export function SiteHeader() {
           <CortexaLogo />
         </Link>
         <nav
-          className="desktop-nav flex justify-between w-full items-center"
+          className="desktop-nav flex justify-end w-full items-center"
           aria-label="Main navigation"
         >
-          <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
-            {links(0, 4)}
+          <div className="nav-cluster absolute left-1/2 -translate-x-1/2 flex items-center gap-[clamp(18px,_2vw,_32px)]">
+            {links()}
           </div>
           <div className="nav-cluster flex items-center gap-[clamp(18px,_2vw,_32px)]">
-            {links(5, 6)}
-            <Link href="/trust" aria-current={pathname === '/trust' ? 'page' : undefined}>
-              Trust
-            </Link>
             <Link
               className="nav-cta ml-[8px] pl-[22px] [border-left:1px_solid_var(--line)]"
               href="/contact"

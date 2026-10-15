@@ -27,10 +27,10 @@ export const engines = [
     description:
       "Find the inventions hiding in research you've already done, understand how mature each one is, and prioritise by impact.",
     steps: [
-      'Research — papers, code, reports',
-      'Candidates — inventions identified',
-      'Evidence — prior art retrieved',
-      'Ranking — ordered by strength',
+      'Research - papers, code, reports',
+      'Candidates - inventions identified',
+      'Evidence - prior art retrieved',
+      'Ranking - ordered by strength',
     ],
     detail:
       'Maturity runs from early signal to filing-ready. Ranking weighs patentability, commercial pull, and freedom to operate. Output is a prioritised report your review board can work from.',
@@ -43,9 +43,9 @@ export const engines = [
       'Point Cortexa at your roadmap as well as your archive, and it proposes directions worth inventing into.',
     steps: [
       'Research + roadmap',
-      'Opportunity seeds — unclaimed directions',
+      'Opportunity seeds - unclaimed directions',
       'Invention lattice (a map of related filings around your idea)',
-      'Strategy — a portfolio, not a list',
+      'Strategy - a portfolio, not a list',
     ],
     detail:
       'Seeds are generated where your capabilities meet an unclaimed region of the art. The lattice shows how a core filing could extend into continuation, platform, and system claims.',

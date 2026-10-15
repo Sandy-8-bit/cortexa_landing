@@ -9,7 +9,7 @@ export function Verdict({ radar = false }: { radar?: boolean }) {
         ) : (
           <>
             <ScoreColumns />
-            <span className="verdict-tag">Verdict: high patentability</span>
+            <span className="verdict-tag">Verdict: High patentability</span>
           </>
         )}
         <p>Scores are calibrated estimates, not legal opinions.</p>

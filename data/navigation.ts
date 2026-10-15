@@ -2,9 +2,9 @@ export const navigation = [
   { href: '/', label: 'Home' },
   { href: '/product', label: 'Product' },
   // { href: '/how-it-works', label: 'How it works' },
-  { href: '/engines', label: 'Engines' },
-  { href: '/evidence', label: 'Evidence' },
-  { href: '/agencies', label: 'For agencies' },
+  // { href: '/engines', label: 'Engines' },
+  // { href: '/evidence', label: 'Evidence' },
+  // { href: '/agencies', label: 'For agencies' },
   { href: '/pricing', label: 'Pricing' },
 ];
 export const companyNavigation = [
