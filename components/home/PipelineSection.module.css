@@ -1,7 +1,7 @@
-/* Four joined cells on one rule grid, like a drawing sheet's title block. */
+/* Five joined cells on one rule grid, like a drawing sheet's title block. */
 .flow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   list-style: none;
   padding: 0;
   margin: 0;
@@ -23,16 +23,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 18px 24px;
+  padding: 18px 20px;
   font-size: 15px;
   color: var(--subtle);
 }
 .illustration {
   display: flex;
-  padding: 0 16px;
+  padding: 0 12px;
 }
 .illustration > * {
   flex: 1;
+}
+.illustration > div {
+  padding: 16px;
 }
 .number {
   color: var(--cx-blue);
@@ -41,11 +44,11 @@
 }
 .copy {
   flex: 1;
-  padding: 28px 24px 32px;
+  padding: 28px 20px 32px;
 }
 .copy h3 {
   margin: 0 0 12px;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
@@ -58,7 +61,7 @@
 .output {
   display: grid;
   gap: 2px;
-  padding: 18px 24px;
+  padding: 18px 20px;
   border-top: 1px solid var(--line);
   font-size: 15px;
   font-weight: 500;
@@ -91,15 +94,19 @@
 .footer a:hover {
   color: var(--cx-blue);
 }
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .flow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .step:nth-child(3) {
+  .step:nth-child(odd) {
     border-left: 0;
   }
   .step:nth-child(n + 3) {
     border-top: 1px solid var(--line);
+  }
+  /* The fifth step closes the sheet across both columns. */
+  .step:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 }
 @media (max-width: 600px) {

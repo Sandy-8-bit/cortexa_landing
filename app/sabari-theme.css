@@ -124,6 +124,7 @@ body::before {
     linear-gradient(var(--guide), var(--guide)) calc(100% - var(--guide-x)) 0 / 1px 100% no-repeat;
 }
 main > *,
+.home-fold > *,
 .site-footer {
   position: relative;
   border-bottom: 1px solid var(--frame-line);
@@ -132,6 +133,8 @@ main > *,
 /* Registration crosses where section rules meet the guides. */
 main > *::before,
 main > *::after,
+.home-fold > *::before,
+.home-fold > *::after,
 .site-footer::before,
 .site-footer::after {
   content: '';
@@ -146,10 +149,12 @@ main > *::after,
     linear-gradient(var(--cross), var(--cross)) center / 100% 1px no-repeat;
 }
 main > *::before,
+.home-fold > *::before,
 .site-footer::before {
   left: calc(var(--guide-x) - 5px);
 }
 main > *::after,
+.home-fold > *::after,
 .site-footer::after {
   right: calc(var(--guide-x) - 5px);
 }
@@ -401,7 +406,43 @@ main > *::after,
 /* ---------- Hero ---------- */
 .hero {
   padding-top: clamp(28px, 6vw, 28px);
-  padding-bottom: 40px;
+  padding-bottom: clamp(20px, 4svh, 40px);
+}
+/* The hero and the in/out strip share the first screen. The drawing is the only
+   part that gives way, so the strip stays above the fold on shorter screens. */
+main > .home-fold {
+  border-bottom: 0;
+}
+main > .home-fold::before,
+main > .home-fold::after {
+  content: none;
+}
+@media (min-width: 768px) {
+  .home-fold {
+    --fold-offset: 77px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100svh - var(--fold-offset));
+  }
+  .home-fold > .input-output {
+    flex: none;
+  }
+  .home-fold > .hero,
+  .home-fold > .hero > .page-container,
+  .home-fold .hero-drawing {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    min-height: 0;
+  }
+  .home-fold .hero-title-block,
+  .home-fold .drawing-legend {
+    flex: none;
+  }
+  .home-fold .hero-drawing .drawing-sheet {
+    flex: 0 1 auto;
+    min-height: 140px;
+  }
 }
 .hero-title-block {
   display: grid;
@@ -475,8 +516,8 @@ main > *::after,
   color: #fff;
 }
 .hero-drawing {
-  margin: 56px 0 0;
-  padding-top: 24px;
+  margin: clamp(24px, 5svh, 56px) 0 0;
+  padding-top: clamp(16px, 3svh, 24px);
   border-top: 1px solid var(--line);
 }
 
@@ -591,7 +632,7 @@ main > *::after,
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 24px;
-  padding: 20px 0 0;
+  padding: clamp(12px, 2svh, 20px) 0 0;
 }
 .drawing-legend span {
   display: inline-flex;
@@ -1235,6 +1276,9 @@ tbody th > span {
   .site-header.is-scrolled .header-inner {
     height: 68px;
   }
+  .home-fold {
+    --fold-offset: 69px;
+  }
   .intro-sheet {
     gap: 24px;
   }
@@ -1267,6 +1311,8 @@ tbody th > span {
   body::before,
   main > *::before,
   main > *::after,
+  .home-fold > *::before,
+  .home-fold > *::after,
   .site-footer::before,
   .site-footer::after {
     display: none;
@@ -1285,7 +1331,7 @@ tbody th > span {
     font-size: 17px;
   }
   .hero-drawing {
-    margin-top: 40px;
+    margin-top: 24px;
   }
   .drawing-callouts {
     display: none;
@@ -1298,7 +1344,7 @@ tbody th > span {
     grid-template-columns: 1fr;
   }
   .io-flow p {
-    padding: 20px 0;
+    padding: 12px 0;
   }
   .io-flow p + p {
     border-left: 0;

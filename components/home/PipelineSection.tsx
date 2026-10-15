@@ -11,24 +11,31 @@ const steps = [
     output: 'Your research, in one place',
   },
   {
-    name: 'Find',
+    name: 'Analyse',
+    action: 'Cortexa analyses',
+    description:
+      'Each document is understood first: its domain, method, technical depth, and references.',
+    output: 'Every source, understood',
+  },
+  {
+    name: 'Find opportunities',
     action: 'Cortexa finds',
     description:
       'Cortexa identifies potential inventions and links each idea to its original source.',
     output: 'Ideas you can trace back',
   },
   {
-    name: 'Check',
-    action: 'Cortexa compares',
+    name: 'Harvest and seed',
+    action: 'Cortexa explores',
     description:
-      'Each idea is compared with existing patents, published research, and public code.',
-    output: 'Matches and differences',
+      'Harvest develops the inventions already in your work. Seed proposes new directions worth exploring.',
+    output: "What's here, and what's next",
   },
   {
-    name: 'Rank',
+    name: 'Score',
     action: 'You decide',
     description:
-      'Review the strengths and gaps of each idea, then choose what deserves a closer look.',
+      'Each idea is checked against patents, published research, and public code, then scored on its strengths and gaps.',
     output: 'A clear starting point',
   },
 ];
@@ -37,7 +44,7 @@ export function PipelineSection() {
     <Section id="how-it-works">
       <SectionHeading
         label="02 / HOW IT WORKS"
-        title="Four passes. Each one asks a harder question."
+        title="Five passes. Each one asks a harder question."
         description="From the work you already have to the ideas worth exploring. Here’s how it happens."
       />
       <ol className={styles.flow}>

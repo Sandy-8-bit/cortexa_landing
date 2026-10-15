@@ -1,5 +1,6 @@
 import styles from './ProcessIllustration.module.css';
 
+/* One card per step: Read, Analyse, Find opportunities, Harvest and seed, Score. */
 export function ProcessIllustration({ stage }: { stage: number }) {
   return (
     <div className={styles.canvas}>
@@ -23,6 +24,23 @@ export function ProcessIllustration({ stage }: { stage: number }) {
       )}
       {stage === 1 && (
         <div data-process-content className={styles.card}>
+          <div className={styles.cardTitle}>Research paper, analysed</div>
+          {[
+            ['Domain', 'Materials'],
+            ['Method', 'Experimental'],
+            ['Depth', 'Detailed'],
+            ['Novelty', 'Early signal'],
+          ].map(([trait, reading]) => (
+            <div className={styles.row} key={trait}>
+              <span>{trait}</span>
+              <b className={trait === 'Novelty' ? styles.open : undefined}>{reading}</b>
+            </div>
+          ))}
+          <div className={styles.next}>42 references resolved</div>
+        </div>
+      )}
+      {stage === 2 && (
+        <div data-process-content className={styles.card}>
           <div className={styles.cardTitle}>Research paper, p. 8</div>
           <div className={styles.lines} aria-hidden="true">
             <i />
@@ -38,40 +56,7 @@ export function ProcessIllustration({ stage }: { stage: number }) {
           </div>
         </div>
       )}
-      {stage === 2 && (
-        <div data-process-content className={styles.card}>
-          <div className={styles.query}>Compare the idea</div>
-          {[
-            ['Patents', 'Similar method'],
-            ['Papers', 'Related research'],
-            // ['Public code', 'Different approach'],
-          ].map(([source, match]) => (
-            <div className={styles.row} key={source}>
-              <span>{source}</span>
-              <b>{match}</b>
-            </div>
-          ))}
-          <p>See what overlaps, and what is different.</p>
-        </div>
-      )}
       {stage === 3 && (
-        <div data-process-content className={styles.card}>
-          <div className={styles.cardTitle}>Invention review</div>
-          <strong className={styles.cardHeading}>Heat-control method</strong>
-          {[
-            ['Novelty', 'Promising'],
-            ['Evidence', 'Linked'],
-            ['Scope', 'Needs review'],
-          ].map(([axis, rating]) => (
-            <div className={styles.row} key={axis}>
-              <span>{axis}</span>
-              <b className={rating === 'Needs review' ? styles.open : undefined}>{rating}</b>
-            </div>
-          ))}
-          <div className={styles.next}>Next: review with your team</div>
-        </div>
-      )}
-      {stage === 4 && (
         <div data-process-content className={styles.paths}>
           <strong className={styles.cardHeading}>Choose your next move</strong>
           <div>
@@ -84,16 +69,21 @@ export function ProcessIllustration({ stage }: { stage: number }) {
           </div>
         </div>
       )}
-      {stage === 5 && (
+      {stage === 4 && (
         <div data-process-content className={styles.card}>
-          <div className={styles.cardTitle}>Your opportunity map</div>
-          {['Review first', 'Develop further', 'Explore next'].map((label, i) => (
-            <div className={styles.row} key={label}>
-              <span>0{i + 1}</span>
-              <b className={styles.plain}>{label}</b>
+          <div className={styles.query}>Prior art checked</div>
+          <strong className={styles.cardHeading}>Heat-control method</strong>
+          {[
+            ['Novelty', 'Promising'],
+            ['Evidence', 'Linked'],
+            ['Scope', 'Needs review'],
+          ].map(([axis, rating]) => (
+            <div className={styles.row} key={axis}>
+              <span>{axis}</span>
+              <b className={rating === 'Needs review' ? styles.open : undefined}>{rating}</b>
             </div>
           ))}
-          <div className={styles.next}>Explore, prioritise, export</div>
+          <div className={styles.next}>Ranked 01 · review first</div>
         </div>
       )}
     </div>

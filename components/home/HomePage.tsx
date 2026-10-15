@@ -13,8 +13,10 @@ import { personas } from '@/data/content';
 export function HomePage() {
   return (
     <>
-      <HeroSection />
-      <InputOutputStrip />
+      <div className="home-fold">
+        <HeroSection />
+        <InputOutputStrip />
+      </div>
       <ResearchSection />
       <TrustStrip />
       <DemoVideo />

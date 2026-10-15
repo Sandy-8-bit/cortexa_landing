@@ -25,7 +25,7 @@ function Illustration({ id, label, caption, children }: {
 
 export function ResearchDirectionIllustration() {
   return (
-    <Illustration id="research-direction" label="Research files follow a six-step path to a prioritised list of invention opportunities." caption="Six steps. A clearer direction.">
+    <Illustration id="research-direction" label="Research files follow a five-step path to a prioritised list of invention opportunities." caption="Five steps. A clearer direction.">
       <g fill="var(--paper)" stroke="var(--periwinkle)">
         <rect x="30" y="57" width="63" height="75" rx="4" transform="rotate(-8 61 95)" />
         <rect x="40" y="63" width="63" height="75" rx="4" />
@@ -36,10 +36,10 @@ export function ResearchDirectionIllustration() {
       </g>
       <text x="52" y="82" fontFamily="monospace" fontSize="8" fill="var(--blue-700)">RESEARCH</text>
       <path d="M103 101H139Q155 101 155 117V187Q155 203 171 203H238Q254 203 254 187V103Q254 87 270 87H291" fill="none" stroke="var(--periwinkle)" strokeWidth="1.5" />
-      {[[137, 101], [155, 149], [177, 203], [226, 203], [254, 151], [269, 87]].map(([x, y], i) => (
+      {[[137, 101], [155, 152], [204, 203], [254, 152], [269, 87]].map(([x, y], i) => (
         <g key={i}>
-          <circle cx={x} cy={y} r="11" fill={i === 5 ? 'var(--cyanotype)' : 'var(--paper)'} stroke="var(--cyanotype)" />
-          <text x={x} y={y + 3} textAnchor="middle" fontFamily="monospace" fontSize="8" fill={i === 5 ? 'var(--paper)' : 'var(--blue-700)'}>{i + 1}</text>
+          <circle cx={x} cy={y} r="11" fill={i === 4 ? 'var(--cyanotype)' : 'var(--paper)'} stroke="var(--cyanotype)" />
+          <text x={x} y={y + 3} textAnchor="middle" fontFamily="monospace" fontSize="8" fill={i === 4 ? 'var(--paper)' : 'var(--blue-700)'}>{i + 1}</text>
         </g>
       ))}
       <rect x="290" y="61" width="129" height="143" rx="7" fill="var(--paper)" stroke="var(--periwinkle)" />

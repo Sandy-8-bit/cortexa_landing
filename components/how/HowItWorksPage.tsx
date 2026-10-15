@@ -10,7 +10,7 @@ export function HowItWorksPage() {
         label="How it works"
         illustration={<ResearchDirectionIllustration />}
         title="From your research to your next move."
-        description="Follow six steps from the files you already have to a prioritised set of invention opportunities."
+        description="Follow five steps from the files you already have to a prioritised set of invention opportunities."
       />
       <Section className="first-section">
         <HowScrollAnimations>
@@ -26,7 +26,7 @@ export function HowItWorksPage() {
                 className="absolute top-[-1px] left-0 h-[2px] w-full origin-left bg-(--cx-blue)"
               />
               <div data-stage-copy>
-                <TechnicalLabel>STAGE {String(i + 1).padStart(2, '0')} / 06</TechnicalLabel>
+                <TechnicalLabel>STAGE {String(i + 1).padStart(2, '0')} / {String(howItWorks.length).padStart(2, '0')}</TechnicalLabel>
                 <h2>{stage.title}</h2>
                 <p>{stage.description}</p>
               </div>

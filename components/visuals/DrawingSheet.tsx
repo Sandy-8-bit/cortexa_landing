@@ -156,18 +156,20 @@ function IsoLabel({ plane, children, size = 1.2 }: { plane: string; children: st
   );
 }
 
-/* Hero: the four passes, each on its own plate of one shared ground plane.
-   Read a stack of research, find the invention, check it against prior art, rank it. */
+/* Hero: the five passes, each on its own plate of one shared ground plane.
+   Read a stack of research, analyse each layer of it, find the opportunities inside,
+   harvest what exists and seed what could, then score it against prior art. */
 function Corpus() {
-  const { p, plane } = projection(480, 190, 11);
+  const scale = 9;
+  const { p, plane } = projection(480, 190, scale);
   const plateSize = 11.5;
   /* Plate origin whose centre lands at screen x = cx on a common ground line. */
   const plate = (cx: number): [number, number] => {
-    const u = (cx - 480) / (Math.cos(rad(30)) * 11);
-    const v = (232 - 190) / (0.5 * 11);
+    const u = (cx - 480) / (Math.cos(rad(30)) * scale);
+    const v = (232 - 190) / (0.5 * scale);
     return [(u + v) / 2 - plateSize / 2, (v - u) / 2 - plateSize / 2];
   };
-  const [read, find, check, rank] = [128, 364, 600, 836].map(plate);
+  const [read, analyse, find, grow, score] = [96, 288, 480, 672, 864].map(plate);
   const cluster: [number, number, number][] = [];
   [
     [4, 3, 3, 1],
@@ -175,12 +177,17 @@ function Corpus() {
     [3, 2, 1, 0],
     [1, 1, 0, 0],
   ].forEach((row, x) => row.forEach((h, y) => Array.from({ length: h }, (_, z) => cluster.push([x, y, z]))));
+  const stack = (heights: number[][]) =>
+    heights.flatMap((row, x) =>
+      row.flatMap((h, y) => Array.from({ length: h }, (_, z) => [x, y, z] as [number, number, number])),
+    );
   const scores = [5, 4, 5, 3, 5];
   const steps: [[number, number], string][] = [
     [read, '01  Read'],
-    [find, '02  Find'],
-    [check, '03  Check'],
-    [rank, '04  Rank'],
+    [analyse, '02  Analyse'],
+    [find, '03  Find opportunities'],
+    [grow, '04  Harvest + seed'],
+    [score, '05  Score'],
   ];
   return (
     <>
@@ -199,34 +206,54 @@ function Corpus() {
         <IsoLabel plane={plane(read[0] + 2.6, read[1] + 2.9, 2.1)} size={1.1}>
           thesis.pdf
         </IsoLabel>
-        {['Code', 'Papers', 'Patents'].map((label, i) => (
+        {['Depth', 'Method', 'Domain'].map((label, i) => (
           <g key={label}>
-            <Sheet p={p} x={check[0] + 2} y={check[1] + 1.5} z={0.4 + i * 3.4} w={7.5} d={8.5} />
-            <IsoLabel plane={plane(check[0] + 3, check[1] + 8.8, 0.7 + i * 3.4)} size={1.2}>
+            <Sheet p={p} x={analyse[0] + 2} y={analyse[1] + 1.5} z={0.4 + i * 3.4} w={7.5} d={8.5} />
+            <IsoLabel plane={plane(analyse[0] + 3, analyse[1] + 8.8, 0.7 + i * 3.4)} size={1.2}>
               {label}
             </IsoLabel>
           </g>
         ))}
+        <IsoLabel plane={plane(grow[0] + 1.2, grow[1] + 10, 0)} size={1.1}>
+          Harvest
+        </IsoLabel>
+        <IsoLabel plane={plane(grow[0] + 6.2, grow[1] + 5.8, 0)} size={1.1}>
+          Seed
+        </IsoLabel>
+        <Sheet p={p} x={score[0] + 0.8} y={score[1] + 5.6} z={0} w={10} d={3.8} />
+        <IsoLabel plane={plane(score[0] + 1.8, score[1] + 8.2, 0.3)} size={1.1}>
+          Prior art
+        </IsoLabel>
       </g>
       <g className="scan-findings">
-        <Marks
-          p={p}
-          z={2.1}
-          runs={[
-            [read[0] + 4.6, read[1] + 5.2, 3],
-            [read[0] + 3, read[1] + 6.8, 2],
-            [read[0] + 5.6, read[1] + 8.4, 3],
-          ]}
-        />
+        <Marks p={p} z={7.5} runs={[[analyse[0] + 3.4, analyse[1] + 5.6, 3]]} />
         <Cubes p={p} cells={cluster} size={1.7} at={[find[0] + 2.4, find[1] + 2.4, 0]} />
-        <Marks p={p} z={7.5} runs={[[check[0] + 3.4, check[1] + 5.6, 3]]} />
+        <Cubes
+          p={p}
+          cells={stack([
+            [3, 2],
+            [2, 1],
+          ])}
+          size={1.7}
+          at={[grow[0] + 1.2, grow[1] + 5, 0]}
+        />
+        <Cubes
+          p={p}
+          cells={stack([
+            [2, 1],
+            [1, 1],
+          ])}
+          size={1.7}
+          at={[grow[0] + 6.2, grow[1] + 1, 0]}
+          tone="seed"
+        />
         {scores.map((h, i) => (
           <Cubes
             key={i}
             p={p}
             cells={Array.from({ length: h }, (_, z) => [0, 0, z] as [number, number, number])}
             size={1.3}
-            at={[rank[0] + 0.8 + i * 2.1, rank[1] + 5, 0]}
+            at={[score[0] + 0.8 + i * 2.1, score[1] + 2, 0]}
             tone={i === 3 ? 'seed' : 'pixel'}
           />
         ))}
@@ -415,7 +442,7 @@ function Pixels({ x, y, outline = false }: { x: number; y: number; outline?: boo
   );
 }
 
-/* A single document at the centre, with the four passes (or four evidence sources) around it. */
+/* A single document at the centre, with the five passes (or four evidence sources) around it. */
 function Blueprint({ evidence }: { evidence: boolean }) {
   return (
     <>
@@ -441,20 +468,41 @@ function Blueprint({ evidence }: { evidence: boolean }) {
       </g>
       <Pixels x={360} y={140} />
       <Pixels x={488} y={212} />
-      <g className="drawing-callouts">
-        <text x="104" y="68">
-          {evidence ? 'Patent' : 'Read'}
-        </text>
-        <text x="808" y="68">
-          {evidence ? 'Paper' : 'Find'}
-        </text>
-        <text x="104" y="352">
-          {evidence ? 'Repository' : 'Check'}
-        </text>
-        <text x="808" y="352">
-          {evidence ? 'Market' : 'Rank'}
-        </text>
-      </g>
+      {evidence ? (
+        <g className="drawing-callouts">
+          <text x="104" y="68">
+            Patent
+          </text>
+          <text x="808" y="68">
+            Paper
+          </text>
+          <text x="104" y="352">
+            Repository
+          </text>
+          <text x="808" y="352">
+            Market
+          </text>
+        </g>
+      ) : (
+        <g className="drawing-callouts">
+          <path d="M468 310V336" />
+          <text x="104" y="68">
+            01 Read
+          </text>
+          <text x="864" y="68" textAnchor="end">
+            02 Analyse
+          </text>
+          <text x="104" y="352">
+            03 Find opportunities
+          </text>
+          <text x="864" y="352" textAnchor="end">
+            04 Harvest + seed
+          </text>
+          <text x="468" y="358" textAnchor="middle">
+            05 Score
+          </text>
+        </g>
+      )}
     </>
   );
 }
@@ -470,7 +518,7 @@ export function DrawingSheet({
   return (
     <svg
       className={`drawing-sheet ${scan ? 'hero-scan' : ''} ${className}`}
-      viewBox={kind === 'archive' ? '0 80 960 250' : '0 0 960 392'}
+      viewBox={kind === 'archive' ? '0 136 960 192' : '0 0 960 392'}
       fill="none"
       aria-hidden="true"
     >
